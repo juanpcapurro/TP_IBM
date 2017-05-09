@@ -1,0 +1,92 @@
+14:30:20 HANOI     MZ390 START USING z390 V1.5.06 ON J2SE 1.8.0_131 05/09/17
+AZ390I Copyright 2011 Automated Software Tools Corporation
+AZ390I z390 is licensed under GNU General Public License
+AZ390I program = /home/vasectomio/Documents/GitHub/organizacion_del_computador/TP_IBM/HANOI
+AZ390I options = sysmac(/home/vasectomio/lib/z390/mac+.) 
+  syscpy(/home/vasectomio/lib/z390/mac+.)
+External Symbol Definitions
+ ESD=0001 LOC=00000000 LEN=00000208 TYPE=CST NAME=HANOI
+Assembler Listing
+000000                                        (1/1)1 HANOI    SUBENTRY BASES = (3)
+000000                                       (2/78)2+HANOI    CSECT 
+000000 90ECD00C                             (2/168)3+         STM   14,12,12(13)
+000004 45FF0068                             (2/169)4+         BAL   15,104(15)
+000008 0000000000000000                     (2/170)5+         DC    18F'0'
+000050 C8C1D5D6C9404040                     (2/171)6+         DC    CL8'HANOI'
+000058 F0F561F0F961F1F7                     (2/172)7+         DC    CL8'05/09/17'
+000060 F1F44BF3F0404040                     (2/173)8+         DC    CL8'14.30'
+000068 50FD0008                             (2/174)9+         ST    15,8(13)
+00006C 50DF0004                            (2/175)10+         ST    13,4(15)
+000070 18DF                                (2/176)11+         LR    13,15
+000072                                     (2/189)12+         USING HANOI+8,13
+LISTUSE HANOI    ESD=0001 LOC=00000008 LEN=01000 REG=D OFF=00000 LAB=
+000072                                       (1/2)14          WTOR  'Ingrese la cantidad de discos',CINPUT,,WAITECB
+000072 4510D090                000098       (3/68)16+         BAL   1,*+(WTOR#0002_EOT-*+1)/2*2
+000076 00210000C9958799                     (3/69)17+         DC    AL2(WTOR#0002_EOT-*,0),C'Ingrese la cantidad de discos'
+000097                  00000097            (3/70)18+WTOR#0002_EOT     EQU *
+000098 4100D0E0                0000E8       (3/72)19+         LA    0,CINPUT
+00009C 41E00002                             (3/90)20+         LA    14,L'CINPUT
+0000A0 41F0D0DC                0000E4       (3/93)21+         LA    15,WAITECB
+0000A4 0AA0                                 (3/98)22+         SVC   160 WTOR R1=MSG,R0=REPLY,R14=LEN,R15=ECB
+0000A6                                       (1/3)24          WAIT  ECB=WAITECB
+0000A6 1B00                                 (4/37)25+         SR    0,0
+0000A8 4110D0DC                0000E4       (4/43)26+         LA    1,WAITECB
+0000AC 0A01                                 (4/62)27+         SVC   1 (R0=0,R1=A(ECB) OR (R0=NUM,R1=ECBLIST)
+0000AE 4140D0E0                0000E8        (1/4)29          LA    4,CINPUT
+0000B2 F270D0E84000     0000F0               (1/5)30          PACK  PINPUT,0(1,4)
+0000B8 4F50D0E8                0000F0        (1/6)31          CVB   5,PINPUT
+0000BC 5050D0F0                0000F8        (1/7)32          ST    5,CNTDISC
+0000C0 45F0D0D4                0000DC        (1/8)33          BAL   15,INIT
+0000C4 D283D0F4D178     0000FC 000180       (1/10)34          MVC   TIZQ(132),=33F'0'
+0000CA                                      (1/12)35          SUBEXIT 
+0000CA 41F00000                             (5/33)36+         LA    15,0
+0000CE 58D0D004                             (5/50)37+         L     13,4(,13)
+0000D2 58E0D00C                             (5/51)38+         L     14,12(,13)
+0000D6 982CD01C                             (5/52)39+         LM    2,12,28(13)
+0000DA 07FE                                 (5/53)40+         BR    14
+0000DC D283D0F4D178     0000FC 000180       (1/14)42 INIT     MVC   TIZQ(132),=33F'0'
+0000E4 00000000                             (1/18)43 WAITECB  DC    F'0'
+0000E8                                      (1/19)44 CINPUT   DS    CL2
+0000F0 0000000000000000                     (1/20)45 PINPUT   DC    D'0'
+0000F8                                      (1/21)46 CNTDISC  DS    F
+0000FC                                      (1/23)47 TIZQ     DS    0CL44
+0000FC                                      (1/24)48 ICANT    DS    F
+000100                                      (1/25)49 IVECT    DS    10F
+000128                                      (1/27)50 TCENTRO  DS    0CL44
+000128                                      (1/28)51 CCANT    DS    F
+00012C                                      (1/29)52 CVECT    DS    10F
+000154                                      (1/31)53 TDER     DS    0CL44
+000154                                      (1/32)54 DCANT    DS    F
+000158                                      (1/33)55 DVECT    DS    10F
+000180                                      (1/34)56          END 
+000180 0000000000000000 =33F'0'
+
+Symbol Table Listing
+
+ SYM=CCANT    LOC=00000128 LEN=00000004 ESD=0001 TYPE=REL  XREF=51 
+ SYM=CINPUT   LOC=000000E8 LEN=00000002 ESD=0001 TYPE=REL  XREF=44 19 20 29 
+ SYM=CNTDISC  LOC=000000F8 LEN=00000004 ESD=0001 TYPE=REL  XREF=46 32 
+ SYM=CVECT    LOC=0000012C LEN=00000004 ESD=0001 TYPE=REL  XREF=52 
+ SYM=DCANT    LOC=00000154 LEN=00000004 ESD=0001 TYPE=REL  XREF=54 
+ SYM=DVECT    LOC=00000158 LEN=00000004 ESD=0001 TYPE=REL  XREF=55 
+ SYM=HANOI    LOC=00000000 LEN=00000208 ESD=0001 TYPE=CST  XREF=2 12 
+ SYM=ICANT    LOC=000000FC LEN=00000004 ESD=0001 TYPE=REL  XREF=48 
+ SYM=INIT     LOC=000000DC LEN=00000006 ESD=0001 TYPE=REL  XREF=42 33 
+ SYM=IVECT    LOC=00000100 LEN=00000004 ESD=0001 TYPE=REL  XREF=49 
+ SYM=PINPUT   LOC=000000F0 LEN=00000008 ESD=0001 TYPE=REL  XREF=45 30 31 
+ SYM=TCENTRO  LOC=00000128 LEN=0000002C ESD=0001 TYPE=REL  XREF=50 
+ SYM=TDER     LOC=00000154 LEN=0000002C ESD=0001 TYPE=REL  XREF=53 
+ SYM=TIZQ     LOC=000000FC LEN=0000002C ESD=0001 TYPE=REL  XREF=47 34 42 
+ SYM=WAITECB  LOC=000000E4 LEN=00000004 ESD=0001 TYPE=REL  XREF=43 21 26 
+ SYM=WTOR#0002_EOT LOC=00000097 LEN=00000001 ESD=0001 TYPE=REL  XREF=18 16 17 
+
+Literal Table Listing
+
+ LIT=33F'0'   LOC=00000180 LEN=00000004 ESD=0001 POOL=0001 XREF=34 42 
+ 
+AZ390I total mnote warnings = 0
+AZ390I total mnote errors   = 0
+AZ390I max   mnote level    = 0
+AZ390I total mz390 errors   = 0
+AZ390I total az390 errors   = 0
+14:30:20 HANOI     MZ390 ENDED   RC= 0 SEC= 0 MEM(MB)= 39 IO=614
