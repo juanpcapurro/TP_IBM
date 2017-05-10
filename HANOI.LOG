@@ -1,0 +1,11 @@
+18:08:25 HANOI     EZ390 START USING z390 V1.5.06 ON J2SE 1.8.0_73 05/10/17
+EZ390I Copyright 2011 Automated Software Tools Corporation
+EZ390I z390 is licensed under GNU General Public License
+EZ390I program = E:\Drive\Documentos\1-Universidad\organizacion_del_computador\TP_IBM\HANOI.390
+EZ390I options = 
+Ingrese la cantidad de discos
+03
+resolucion par
+EZ390I instructions/sec     = 18
+EZ390I total errors         = 0
+18:08:27 HANOI     EZ390 ENDED   RC= 0 SEC= 2 MEM(MB)= 20 IO=23 INS=48

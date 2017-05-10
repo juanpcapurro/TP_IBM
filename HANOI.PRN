@@ -1,11 +1,11 @@
-14:30:20 HANOI     MZ390 START USING z390 V1.5.06 ON J2SE 1.8.0_131 05/09/17
+18:08:24 HANOI     MZ390 START USING z390 V1.5.06 ON J2SE 1.8.0_73 05/10/17
 AZ390I Copyright 2011 Automated Software Tools Corporation
 AZ390I z390 is licensed under GNU General Public License
-AZ390I program = /home/vasectomio/Documents/GitHub/organizacion_del_computador/TP_IBM/HANOI
-AZ390I options = sysmac(/home/vasectomio/lib/z390/mac+.) 
-  syscpy(/home/vasectomio/lib/z390/mac+.)
+AZ390I program = E:\Drive\Documentos\1-Universidad\organizacion_del_computador\TP_IBM\HANOI
+AZ390I options = sysmac(C:\PROGRA~2\AUTOMA~1\z390\mac+.) 
+  syscpy(C:\PROGRA~2\AUTOMA~1\z390\mac+.)
 External Symbol Definitions
- ESD=0001 LOC=00000000 LEN=00000208 TYPE=CST NAME=HANOI
+ ESD=0001 LOC=00000000 LEN=000002A0 TYPE=CST NAME=HANOI
 Assembler Listing
 000000                                        (1/1)1 HANOI    SUBENTRY BASES = (3)
 000000                                       (2/78)2+HANOI    CSECT 
@@ -13,8 +13,8 @@ Assembler Listing
 000004 45FF0068                             (2/169)4+         BAL   15,104(15)
 000008 0000000000000000                     (2/170)5+         DC    18F'0'
 000050 C8C1D5D6C9404040                     (2/171)6+         DC    CL8'HANOI'
-000058 F0F561F0F961F1F7                     (2/172)7+         DC    CL8'05/09/17'
-000060 F1F44BF3F0404040                     (2/173)8+         DC    CL8'14.30'
+000058 F0F561F1F061F1F7                     (2/172)7+         DC    CL8'05/10/17'
+000060 F1F84BF0F8404040                     (2/173)8+         DC    CL8'18.08'
 000068 50FD0008                             (2/174)9+         ST    15,8(13)
 00006C 50DF0004                            (2/175)10+         ST    13,4(15)
 000070 18DF                                (2/176)11+         LR    13,15
@@ -24,69 +24,116 @@ LISTUSE HANOI    ESD=0001 LOC=00000008 LEN=01000 REG=D OFF=00000 LAB=
 000072 4510D090                000098       (3/68)16+         BAL   1,*+(WTOR#0002_EOT-*+1)/2*2
 000076 00210000C9958799                     (3/69)17+         DC    AL2(WTOR#0002_EOT-*,0),C'Ingrese la cantidad de discos'
 000097                  00000097            (3/70)18+WTOR#0002_EOT     EQU *
-000098 4100D0E0                0000E8       (3/72)19+         LA    0,CINPUT
+000098 4100D14C                000154       (3/72)19+         LA    0,CINPUT
 00009C 41E00002                             (3/90)20+         LA    14,L'CINPUT
-0000A0 41F0D0DC                0000E4       (3/93)21+         LA    15,WAITECB
+0000A0 41F0D148                000150       (3/93)21+         LA    15,WAITECB
 0000A4 0AA0                                 (3/98)22+         SVC   160 WTOR R1=MSG,R0=REPLY,R14=LEN,R15=ECB
 0000A6                                       (1/3)24          WAIT  ECB=WAITECB
 0000A6 1B00                                 (4/37)25+         SR    0,0
-0000A8 4110D0DC                0000E4       (4/43)26+         LA    1,WAITECB
+0000A8 4110D148                000150       (4/43)26+         LA    1,WAITECB
 0000AC 0A01                                 (4/62)27+         SVC   1 (R0=0,R1=A(ECB) OR (R0=NUM,R1=ECBLIST)
-0000AE 4140D0E0                0000E8        (1/4)29          LA    4,CINPUT
-0000B2 F270D0E84000     0000F0               (1/5)30          PACK  PINPUT,0(1,4)
-0000B8 4F50D0E8                0000F0        (1/6)31          CVB   5,PINPUT
-0000BC 5050D0F0                0000F8        (1/7)32          ST    5,CNTDISC
-0000C0 45F0D0D4                0000DC        (1/8)33          BAL   15,INIT
-0000C4 D283D0F4D178     0000FC 000180       (1/10)34          MVC   TIZQ(132),=33F'0'
-0000CA                                      (1/12)35          SUBEXIT 
-0000CA 41F00000                             (5/33)36+         LA    15,0
-0000CE 58D0D004                             (5/50)37+         L     13,4(,13)
-0000D2 58E0D00C                             (5/51)38+         L     14,12(,13)
-0000D6 982CD01C                             (5/52)39+         LM    2,12,28(13)
-0000DA 07FE                                 (5/53)40+         BR    14
-0000DC D283D0F4D178     0000FC 000180       (1/14)42 INIT     MVC   TIZQ(132),=33F'0'
-0000E4 00000000                             (1/18)43 WAITECB  DC    F'0'
-0000E8                                      (1/19)44 CINPUT   DS    CL2
-0000F0 0000000000000000                     (1/20)45 PINPUT   DC    D'0'
-0000F8                                      (1/21)46 CNTDISC  DS    F
-0000FC                                      (1/23)47 TIZQ     DS    0CL44
-0000FC                                      (1/24)48 ICANT    DS    F
-000100                                      (1/25)49 IVECT    DS    10F
-000128                                      (1/27)50 TCENTRO  DS    0CL44
-000128                                      (1/28)51 CCANT    DS    F
-00012C                                      (1/29)52 CVECT    DS    10F
-000154                                      (1/31)53 TDER     DS    0CL44
-000154                                      (1/32)54 DCANT    DS    F
-000158                                      (1/33)55 DVECT    DS    10F
-000180                                      (1/34)56          END 
-000180 0000000000000000 =33F'0'
+0000AE F271D150D14C     000158 000154        (1/4)29          PACK  PINPUT(8),CINPUT(2)
+0000B4 4F50D150                000158        (1/5)30          CVB   5,PINPUT
+0000B8 5050D158                000160        (1/6)31          ST    5,CNTDISC
+0000BC 4520D0EA                0000F2        (1/7)32          BAL   2,INIT
+0000C0 5450D208                000210        (1/8)33          N     5,=F'1'
+0000C4 5550D20C                000214        (1/9)34          CL    5,=F'0'
+0000C8 4780D0CC                0000D4       (1/10)35          BE    PAR
+0000CC 4520D10C                000114       (1/11)36          BAL   2,RESIMP
+0000D0 47F0D0D8                0000E0       (1/12)37          B     FIN
+0000D4 4520D128                000130       (1/13)38 PAR      BAL   2,RESPAR
+0000D8 4520D142                00014A       (1/14)39          BAL   2,SHWALL
+0000DC 47F0D0D8                0000E0       (1/15)40          B     FIN
+0000E0                                      (1/17)41 FIN      SUBEXIT 
+0000E0                                      (5/29)42+FIN      DS    0H
+0000E0 41F00000                             (5/33)43+         LA    15,0
+0000E4 58D0D004                             (5/50)44+         L     13,4(,13)
+0000E8 58E0D00C                             (5/51)45+         L     14,12(,13)
+0000EC 982CD01C                             (5/52)46+         LM    2,12,28(13)
+0000F0 07FE                                 (5/53)47+         BR    14
+0000F2 D283D15CD210     000164 000218       (1/19)49 INIT     MVC   TIZQ(132),=33F'0'
+0000F8 D200D15CD158     000164 000160       (1/20)50          MVC   ICANT(1),CNTDISC
+0000FE 41400000                             (1/21)51          LA    4,0
+000102 5850D158                000160       (1/22)52          L     5,CNTDISC
+000106 5054D160                000168       (1/23)53 LPLOAD   ST    5,IVECT(4)
+00010A 5A40D208                000210       (1/24)54          A     4,=F'1'
+00010E 4650D0FE                000106       (1/25)55          BCT   5,LPLOAD
+000112 07F2                                 (1/26)56          BR    2
+000114                                      (1/28)57 RESIMP   WTO   'resolucion impar'
+000114                                      (6/35)58+RESIMP   DS    0H
+000114 A715000C                00012C       (6/49)59+         BRAS  1,*+(WTO#0005_EOT-*+1)/2*2
+000118 001400009985A296                     (6/50)60+         DC    AL2(WTO#0005_EOT-*,0),C'resolucion impar'
+00012C                  0000012C            (6/51)61+WTO#0005_EOT     EQU *
+00012C 0A23                                 (6/52)62+         SVC   35
+00012E 07F2                                 (1/29)64          BR    2
+000130                                      (1/31)65 RESPAR   WTO   'resolucion par'
+000130                                      (6/35)66+RESPAR   DS    0H
+000130 A715000B                000146       (6/49)67+         BRAS  1,*+(WTO#0006_EOT-*+1)/2*2
+000134 001200009985A296                     (6/50)68+         DC    AL2(WTO#0006_EOT-*,0),C'resolucion par'
+000146                  00000146            (6/51)69+WTO#0006_EOT     EQU *
+000146 0A23                                 (6/52)70+         SVC   35
+000148 07F2                                 (1/32)72          BR    2
+00014A 4140000A                             (1/34)73 SHWALL   LA    4,10
+00014E 07F2                                 (1/35)74          BR    2
+000150 00000000                             (1/38)75 WAITECB  DC    F'0'
+000154                                      (1/39)76 CINPUT   DS    CL2
+000158 0000000000000000                     (1/40)77 PINPUT   DC    D'0'
+000160                                      (1/41)78 CNTDISC  DS    F
+000164                                      (1/43)79 TIZQ     DS    0CL44
+000164                                      (1/44)80 ICANT    DS    F
+000168                                      (1/45)81 IVECT    DS    10F
+000190                                      (1/47)82 TCENTRO  DS    0CL44
+000190                                      (1/48)83 CCANT    DS    F
+000194                                      (1/49)84 CVECT    DS    10F
+0001BC                                      (1/51)85 TDER     DS    0CL44
+0001BC                                      (1/52)86 DCANT    DS    F
+0001C0                                      (1/53)87 DVECT    DS    10F
+0001E8 0022                                 (1/55)88 WTOBLOC  DC    H'34'
+0001EA 0000                                 (1/56)89          DC    H'0'
+0001EC                                      (1/57)90 TXTOUT   DS    CL30
+00020A                                      (1/58)91          END 
+000210 00000001         =F'1'
+000214 00000000         =F'0'
+000218 0000000000000000 =33F'0'
 
 Symbol Table Listing
 
- SYM=CCANT    LOC=00000128 LEN=00000004 ESD=0001 TYPE=REL  XREF=51 
- SYM=CINPUT   LOC=000000E8 LEN=00000002 ESD=0001 TYPE=REL  XREF=44 19 20 29 
- SYM=CNTDISC  LOC=000000F8 LEN=00000004 ESD=0001 TYPE=REL  XREF=46 32 
- SYM=CVECT    LOC=0000012C LEN=00000004 ESD=0001 TYPE=REL  XREF=52 
- SYM=DCANT    LOC=00000154 LEN=00000004 ESD=0001 TYPE=REL  XREF=54 
- SYM=DVECT    LOC=00000158 LEN=00000004 ESD=0001 TYPE=REL  XREF=55 
- SYM=HANOI    LOC=00000000 LEN=00000208 ESD=0001 TYPE=CST  XREF=2 12 
- SYM=ICANT    LOC=000000FC LEN=00000004 ESD=0001 TYPE=REL  XREF=48 
- SYM=INIT     LOC=000000DC LEN=00000006 ESD=0001 TYPE=REL  XREF=42 33 
- SYM=IVECT    LOC=00000100 LEN=00000004 ESD=0001 TYPE=REL  XREF=49 
- SYM=PINPUT   LOC=000000F0 LEN=00000008 ESD=0001 TYPE=REL  XREF=45 30 31 
- SYM=TCENTRO  LOC=00000128 LEN=0000002C ESD=0001 TYPE=REL  XREF=50 
- SYM=TDER     LOC=00000154 LEN=0000002C ESD=0001 TYPE=REL  XREF=53 
- SYM=TIZQ     LOC=000000FC LEN=0000002C ESD=0001 TYPE=REL  XREF=47 34 42 
- SYM=WAITECB  LOC=000000E4 LEN=00000004 ESD=0001 TYPE=REL  XREF=43 21 26 
+ SYM=CCANT    LOC=00000190 LEN=00000004 ESD=0001 TYPE=REL  XREF=83 
+ SYM=CINPUT   LOC=00000154 LEN=00000002 ESD=0001 TYPE=REL  XREF=76 19 20 29 
+ SYM=CNTDISC  LOC=00000160 LEN=00000004 ESD=0001 TYPE=REL  XREF=78 31 50 52 
+ SYM=CVECT    LOC=00000194 LEN=00000004 ESD=0001 TYPE=REL  XREF=84 
+ SYM=DCANT    LOC=000001BC LEN=00000004 ESD=0001 TYPE=REL  XREF=86 
+ SYM=DVECT    LOC=000001C0 LEN=00000004 ESD=0001 TYPE=REL  XREF=87 
+ SYM=FIN      LOC=000000E0 LEN=00000002 ESD=0001 TYPE=REL  XREF=42 37 40 
+ SYM=HANOI    LOC=00000000 LEN=000002A0 ESD=0001 TYPE=CST  XREF=2 12 
+ SYM=ICANT    LOC=00000164 LEN=00000004 ESD=0001 TYPE=REL  XREF=80 50 
+ SYM=INIT     LOC=000000F2 LEN=00000006 ESD=0001 TYPE=REL  XREF=49 32 
+ SYM=IVECT    LOC=00000168 LEN=00000004 ESD=0001 TYPE=REL  XREF=81 53 
+ SYM=LPLOAD   LOC=00000106 LEN=00000004 ESD=0001 TYPE=REL  XREF=53 55 
+ SYM=PAR      LOC=000000D4 LEN=00000004 ESD=0001 TYPE=REL  XREF=38 35 
+ SYM=PINPUT   LOC=00000158 LEN=00000008 ESD=0001 TYPE=REL  XREF=77 29 30 
+ SYM=RESIMP   LOC=00000114 LEN=00000002 ESD=0001 TYPE=REL  XREF=58 36 
+ SYM=RESPAR   LOC=00000130 LEN=00000002 ESD=0001 TYPE=REL  XREF=66 38 
+ SYM=SHWALL   LOC=0000014A LEN=00000004 ESD=0001 TYPE=REL  XREF=73 39 
+ SYM=TCENTRO  LOC=00000190 LEN=0000002C ESD=0001 TYPE=REL  XREF=82 
+ SYM=TDER     LOC=000001BC LEN=0000002C ESD=0001 TYPE=REL  XREF=85 
+ SYM=TIZQ     LOC=00000164 LEN=0000002C ESD=0001 TYPE=REL  XREF=79 49 
+ SYM=TXTOUT   LOC=000001EC LEN=0000001E ESD=0001 TYPE=REL  XREF=90 
+ SYM=WAITECB  LOC=00000150 LEN=00000004 ESD=0001 TYPE=REL  XREF=75 21 26 
+ SYM=WTO#0005_EOT LOC=0000012C LEN=00000001 ESD=0001 TYPE=REL  XREF=61 59 60 
+ SYM=WTO#0006_EOT LOC=00000146 LEN=00000001 ESD=0001 TYPE=REL  XREF=69 67 68 
+ SYM=WTOBLOC  LOC=000001E8 LEN=00000002 ESD=0001 TYPE=REL  XREF=88 
  SYM=WTOR#0002_EOT LOC=00000097 LEN=00000001 ESD=0001 TYPE=REL  XREF=18 16 17 
 
 Literal Table Listing
 
- LIT=33F'0'   LOC=00000180 LEN=00000004 ESD=0001 POOL=0001 XREF=34 42 
+ LIT=33F'0'   LOC=00000218 LEN=00000004 ESD=0001 POOL=0001 XREF=49 
+ LIT=F'0'     LOC=00000214 LEN=00000004 ESD=0001 POOL=0001 XREF=34 
+ LIT=F'1'     LOC=00000210 LEN=00000004 ESD=0001 POOL=0001 XREF=33 54 
  
 AZ390I total mnote warnings = 0
 AZ390I total mnote errors   = 0
 AZ390I max   mnote level    = 0
 AZ390I total mz390 errors   = 0
 AZ390I total az390 errors   = 0
-14:30:20 HANOI     MZ390 ENDED   RC= 0 SEC= 0 MEM(MB)= 39 IO=614
+18:08:24 HANOI     MZ390 ENDED   RC= 0 SEC= 0 MEM(MB)= 41 IO=769

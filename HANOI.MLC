@@ -1,18 +1,38 @@
 HANOI    SUBENTRY BASES = (3)
          WTOR  'Ingrese la cantidad de discos',CINPUT,,WAITECB
          WAIT  ECB=WAITECB
-         LA    4,CINPUT
-         PACK  PINPUT,0(1,4)
+         PACK  PINPUT(8),CINPUT(2)
          CVB   5,PINPUT
          ST    5,CNTDISC
-         BAL   15,INIT
+         BAL   2,INIT
+         N     5,=F'1'
+         CL    5,=F'0'
+         BE    PAR
+         BAL   2,RESIMP
+         B     FIN
+PAR      BAL   2,RESPAR
+         BAL   2,SHWALL
+         B     FIN
 
-         MVC   TIZQ(132),=33F'0'
-
-         SUBEXIT
+FIN      SUBEXIT
 
 INIT     MVC   TIZQ(132),=33F'0'
+         MVC   ICANT(1),CNTDISC
+         LA    4,0
+         L     5,CNTDISC
+LPLOAD   ST    5,IVECT(4)
+         A     4,=F'1'
+         BCT   5,LPLOAD
+         BR    2
 
+RESIMP   WTO   'resolucion impar'
+         BR    2
+
+RESPAR   WTO   'resolucion par'
+         BR    2
+
+SHWALL   LA    4,10
+         BR    2
 
 
 WAITECB  DC    F'0'
@@ -31,4 +51,8 @@ CVECT    DS    10F
 TDER     DS    0CL44
 DCANT    DS    F
 DVECT    DS    10F
+
+WTOBLOC  DC    H'34'
+         DC    H'0'
+TXTOUT   DS    CL30
          END
