@@ -5,6 +5,7 @@ HANOI    SUBENTRY BASES = (3)
          CVB   5,PINPUT
          ST    5,CNTDISC
          BAL   2,INIT
+         L     5,CNTDISC
          N     5,=F'1'
          CL    5,=F'0'
          BE    PAR
