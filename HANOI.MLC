@@ -1,6 +1,9 @@
 HANOI    SUBENTRY BASES = (3)
-         WTOR  'Ingrese la cantidad de discos',CINPUT,,WAITECB
+         WTOR  'Ingrese la cantidad de discos:',CINPUT,,WAITECB
          WAIT  ECB=WAITECB
+         BAL   2,VALIDAR
+         CLC   VALIN,=C'S'
+         BNE   ABEXIT
          PACK  PINPUT(8),CINPUT(2)
          CVB   5,PINPUT
          ST    5,CNTDISC
@@ -14,11 +17,15 @@ HANOI    SUBENTRY BASES = (3)
 PAR      BAL   2,RESPAR
          BAL   2,SHWALL
          B     FIN
+ABEXIT   WTO   'Entrada invalida. Saliendo.'
+         B     FIN
 
 FIN      SUBEXIT
 
 INIT     MVC   TIZQ(132),=33F'0'
-         MVC   ICANT(1),CNTDISC
+         L     4,CNTDISC
+         S     4,=F'1'
+         ST    4,ICANT
          LA    4,0
          L     5,CNTDISC
 LPLOAD   ST    5,IVECT(4)
@@ -32,13 +39,52 @@ RESIMP   WTO   'resolucion impar'
 RESPAR   WTO   'resolucion par'
          BR    2
 
-SHWALL   LA    4,10
+SHWALL   MVC   TXTOUT(30),=30C' '
+         LA    6,9 *indice de disco
+LPSHOW   LA    4,0 *indice de TXTOUT, 0 para tizq, 10 para tcentro
+         LA    8,IVECT
+         AR    8,6
+         CLC   0(4,8),=F'0'
+         BE    SHCENT
+         LA    7,IVECT
+         AR    7,6 *direccion del iesimo elemento del vector
+         LR    7,7 *cantidad de discos
+LPIZQ    LA    8,TXTOUT
+         AR    8,4
+         MVC   0(1,4),=C'X'
+         A     4,=F'1'
+         BCT   7,LPIZQ
+
+SHCENT   LA    4,10
+
+SHDER    LA    4,20
+         S     6,=F'1'
+         C     6,=F'0'
+         BNL   LPSHOW
+
          BR    2
 
+VALIDAR  CLC   CINPUT(1),=C'0'
+         BNE   DIEZ
+         CLC   CINPUT+1(1),=C'3'
+         BL    INVAL
+         CLC   CINPUT+1(1),=C'9'
+         BH    INVAL *teoricamente no se daria nunca
+         MVC   VALIN,=C'S'
+         BR    2
+DIEZ     CLC   CINPUT(1),=C'1'
+         BNE   INVAL
+         CLC   CINPUT+1(1),=C'0'
+         BNE   INVAL
+         MVC   VALIN,=C'S'
+         BR    2
+INVAL    MVC   VALIN,=C'N'
+         BR    2
 
 WAITECB  DC    F'0'
 CINPUT   DS    CL2
 PINPUT   DC    D'0'
+VALIN    DS    C
 CNTDISC  DS    F
 
 TIZQ     DS    0CL44
