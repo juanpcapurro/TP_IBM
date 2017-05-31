@@ -23,18 +23,6 @@ ABEXIT   WTO   'Entrada invalida. Saliendo.'
 
 FIN      SUBEXIT
 
-INIT     MVC   TIZQ(132),=33F'0'
-         L     4,CNTDISC
-         SLA   4,=F'2'*multiplico por 4 y le resto 4 para que
-         S     4,=F'4'*sea el indice valido del vector
-         ST    4,IINDEX
-         LA    4,0
-         L     5,CNTDISC
-LPLOAD   ST    5,IVECT(4)
-         A     4,=F'4'
-         BCT   5,LPLOAD
-         BR    2
-
 RESIMP   WTO   'resolucion impar'
          BR    2
 
@@ -89,6 +77,18 @@ DIEZ     CLC   CINPUT(1),=C'1'
          MVC   VALIN,=C'S'
          BR    2
 INVAL    MVC   VALIN,=C'N'
+         BR    2
+
+INIT     MVC   TIZQ(132),=33F'0'
+         L     4,CNTDISC
+         S     4,=F'1' *le resto 1 y multiplico por 4 para que
+         SLA   4,=F'2' *sea el indice valido del vector
+         ST    4,IINDEX
+         LA    4,0
+         L     5,CNTDISC
+LPLOAD   ST    5,IVECT(4)
+         A     4,=F'4'
+         BCT   5,LPLOAD
          BR    2
 
 WAITECB  DC    F'0'
