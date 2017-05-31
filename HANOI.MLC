@@ -1,12 +1,12 @@
 HANOI    SUBENTRY BASES = (3)
-         WTOR  'Ingrese la cantidad de discos:',CINPUT,,WAITECB
-         WAIT  ECB=WAITECB
-         BAL   2,VALIDAR
-         CLC   VALIN,=C'S'
-         BNE   ABEXIT
-         PACK  PINPUT(8),CINPUT(2)
-         CVB   5,PINPUT
-         ST    5,CNTDISC
+*         WTOR  'Ingrese la cantidad de discos:',CINPUT,,WAITECB
+*         WAIT  ECB=WAITECB
+*         BAL   2,VALIDAR
+*         CLC   VALIN,=C'S'
+*         BNE   ABEXIT
+*         PACK  PINPUT(8),CINPUT(2)
+*         CVB   5,PINPUT
+*         ST    5,CNTDISC
          BAL   2,INIT
          L     5,CNTDISC
          N     5,=F'1'
@@ -24,12 +24,15 @@ FIN      SUBEXIT
 
 INIT     MVC   TIZQ(132),=33F'0'
          L     4,CNTDISC
-         S     4,=F'1'
-         ST    4,ICANT
+         A     4,CNTDISC
+         A     4,CNTDISC
+         A     4,CNTDISC
+         S     4,=F'4'
+         ST    4,IINDEX
          LA    4,0
          L     5,CNTDISC
 LPLOAD   ST    5,IVECT(4)
-         A     4,=F'1'
+         A     4,=F'4'
          BCT   5,LPLOAD
          BR    2
 
@@ -40,7 +43,7 @@ RESPAR   WTO   'resolucion par'
          BR    2
 
 SHWALL   MVC   TXTOUT(30),=30C' '
-         LA    6,9 *indice de disco
+         LA    6,36 *indice de disco (posicion 9, largo fw=4)
 LPSHOW   LA    4,0 *indice de TXTOUT, 0 para tizq, 10 para tcentro
          LA    8,IVECT
          AR    8,6
@@ -48,18 +51,19 @@ LPSHOW   LA    4,0 *indice de TXTOUT, 0 para tizq, 10 para tcentro
          BE    SHCENT
          LA    7,IVECT
          AR    7,6 *direccion del iesimo elemento del vector
-         LR    7,7 *cantidad de discos
+         L     7,0(7) *cantidad de discos
 LPIZQ    LA    8,TXTOUT
          AR    8,4
-         MVC   0(1,4),=C'X'
+         MVC   0(1,8),=C'X'
          A     4,=F'1'
          BCT   7,LPIZQ
 
 SHCENT   LA    4,10
 
 SHDER    LA    4,20
-         S     6,=F'1'
+         S     6,=F'4'
          C     6,=F'0'
+         WTO   MF=(E,WTOBLOC)
          BNL   LPSHOW
 
          BR    2
@@ -85,18 +89,18 @@ WAITECB  DC    F'0'
 CINPUT   DS    CL2
 PINPUT   DC    D'0'
 VALIN    DS    C
-CNTDISC  DS    F
+CNTDISC  DC    F'4'
 
 TIZQ     DS    0CL44
-ICANT    DS    F
+IINDEX   DS    F
 IVECT    DS    10F
 
 TCENTRO  DS    0CL44
-CCANT    DS    F
+CINDEX   DS    F
 CVECT    DS    10F
 
 TDER     DS    0CL44
-DCANT    DS    F
+DINDEX   DS    F
 DVECT    DS    10F
 
 WTOBLOC  DC    H'34'
