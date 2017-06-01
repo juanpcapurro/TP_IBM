@@ -1,9 +1,9 @@
-17:52:44 HANOI     LZ390 START USING z390 V1.5.06 ON J2SE 1.8.0_131 05/31/17
+18:02:31 HANOI     LZ390 START USING z390 V1.5.06 ON J2SE 1.8.0_131 06/01/17
 LZ390I Copyright 2011 Automated Software Tools Corporation
 LZ390I z390 is licensed under GNU General Public License
 LZ390I options = 
 LZ390I program = /home/vasectomio/Documents/GitHub/organizacion_del_computador/TP_IBM/HANOI.OBJ
-LZ390I ESD=HANOI    LOC=00000000 LEN=000003D8
+LZ390I ESD=HANOI    LOC=00000000 LEN=000003F0
 LZ390I INCLUDE = /home/vasectomio/Documents/GitHub/organizacion_del_computador/TP_IBM/HANOI.OBJ
 LZ390I total errors         = 0
-17:52:44 HANOI     LZ390 ENDED   RC= 0 SEC= 0 MEM(MB)= 11 IO=130
+18:02:31 HANOI     LZ390 ENDED   RC= 0 SEC= 0 MEM(MB)= 11 IO=134
