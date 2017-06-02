@@ -32,6 +32,10 @@ PAR      BAL   2,SHWALL
          LA    4,TIZQ
          BAL   2,SACAR
          BAL   2,SHWALL
+         BAL   2,RESPAR
+         LA    4,TIZQ
+         BAL   2,SACAR
+         BAL   2,SHWALL
          B     FIN
 ABEXIT   WTO   'Entrada invalida. Saliendo.'
          B     FIN
@@ -43,7 +47,7 @@ FIN      SUBEXIT
 *la torre estaba vacia. Usa R5.
 SACAR    L     5,0(4)
          C     5,=F'0'
-         BRL   TVACIA
+         BRNH  TVACIA
          LR    5,4
          A     5,0(4)
          L     1,0(5)
@@ -117,7 +121,7 @@ INIT     MVC   TIZQ(132),=33F'0'
          L     4,CNTDISC
          LR    5,4
          LA    4,0
-         M     4,=F'4' *sea el indice valido del vector
+         M     4,=F'4'
          LR    4,5
          ST    4,IINDEX
          LA    4,0
