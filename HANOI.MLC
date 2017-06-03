@@ -1,12 +1,13 @@
 HANOI    SUBENTRY BASES = (3)
-*         WTOR  'Ingrese la cantidad de discos:',CINPUT,,WAITECB
-*         WAIT  ECB=WAITECB
-*         BAL   2,VALIDAR
-*         CLC   VALIN,=C'S'
-*         BNE   ABEXIT
-*         PACK  PINPUT(8),CINPUT(2)
-*         CVB   5,PINPUT
-*         ST    5,CNTDISC
+         WTO   'Ingrese la cantidad de discos en formato de dos'
+         WTOR  'digitos. Ejemplo: 07:  ',CINPUT,,WAITECB
+         WAIT  ECB=WAITECB
+         BAL   2,VALIDAR
+         CLC   VALIN,=C'S'
+         BNE   ABEXIT
+         PACK  PINPUT(8),CINPUT(2)
+         CVB   5,PINPUT
+         ST    5,CNTDISC
          BAL   2,INIT
          L     5,CNTDISC
          N     5,=F'1'
@@ -32,7 +33,7 @@ CHECKSOL ST 2,RETURN3
          BRE  SOL
          CLC  DINDEX(4),=F'0'
          BRNE NOSOL
-SOL      WTO  'Puzzle completado!. Saliendo.'
+SOL      WTO  'Puzzle completado! Saliendo.'
          B    FIN
 NOSOL    L    2,RETURN3
          BR   2
@@ -156,7 +157,19 @@ PONER    LR    5,4
          ST    5,0(4)
          BR    2
 
-RESIMP   WTO   'resolucion impar'
+RESIMP   ST    2,RETURN4
+         BAL   2,SHWALL
+LPIMP    BAL   2,IZQ2DER
+         BAL   2,SHWALL
+         BAL   2,CHECKSOL
+         BAL   2,IZQ2CEN
+         BAL   2,SHWALL
+         BAL   2,CHECKSOL
+         BAL   2,CEN2DER
+         BAL   2,SHWALL
+         BAL   2,CHECKSOL
+         B     LPIMP
+         L     2,RETURN4
          BR    2
 
 RESPAR   ST    2,RETURN4
@@ -244,7 +257,7 @@ WAITECB  DC    F'0'
 CINPUT   DS    CL2
 PINPUT   DC    D'0'
 VALIN    DS    C
-CNTDISC  DC    F'4'
+CNTDISC  DS    F
 
 TIZQ     DS    0CL44
 IINDEX   DS    F

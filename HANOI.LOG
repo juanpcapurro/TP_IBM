@@ -1,8 +1,11 @@
-20:28:18 HANOI     EZ390 START USING z390 V1.5.06 ON J2SE 1.8.0_131 06/03/17
+20:36:48 HANOI     EZ390 START USING z390 V1.5.06 ON J2SE 1.8.0_131 06/03/17
 EZ390I Copyright 2011 Automated Software Tools Corporation
 EZ390I z390 is licensed under GNU General Public License
 EZ390I program = /home/vasectomio/Documents/GitHub/organizacion_del_computador/TP_IBM/HANOI.390
 EZ390I options = 
+Ingrese la cantidad de discos en formato de dos
+digitos. Ejemplo: 07:
+04
 
 
 
@@ -163,7 +166,7 @@ XX        X         XXXX
                     XX
                     XXX
                     XXXX
-Puzzle completado!. Saliendo.
-EZ390I instructions/sec     = 88594
+Puzzle completado! Saliendo.
+EZ390I instructions/sec     = 1546
 EZ390I total errors         = 0
-20:28:18 HANOI     EZ390 ENDED   RC= 0 SEC= 0 MEM(MB)= 19 IO=181 INS=6113
+20:36:52 HANOI     EZ390 ENDED   RC= 0 SEC= 3 MEM(MB)= 21 IO=184 INS=6137
