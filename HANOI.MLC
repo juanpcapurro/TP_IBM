@@ -16,23 +16,73 @@ HANOI    SUBENTRY BASES = (3)
          BAL   2,SHWALL
          B     FIN
 PAR      BAL   2,SHWALL
-         LA    4,TIZQ
-         ST    4,TORIGEN
-         LA    4,TDER
-         ST    4,TDESTINO
-         BAL   2,MOVLEGAL
+         BAL   2,IZQ2CEN
          BAL   2,SHWALL
-         LA    4,TIZQ
-         ST    4,TORIGEN
-         LA    4,TCENTRO
-         ST    4,TDESTINO
-         BAL   2,MOVLEGAL
+         BAL   2,CEN2DER
+         BAL   2,SHWALL
+         BAL   2,IZQ2CEN
+         BAL   2,SHWALL
+         BAL   2,IZQ2DER
          BAL   2,SHWALL
          B     FIN
 ABEXIT   WTO   'Entrada invalida. Saliendo.'
          B     FIN
 
 FIN      SUBEXIT
+
+
+* mueve entre la torre izquierda y la central, en el sentido
+* que sea valido
+IZQ2CEN  ST   2,RETURN2
+         LA   4,TIZQ
+         ST   4,TORIGEN
+         LA   4,TCENTRO
+         ST   4,TDESTINO
+         BAL  2,MOVLEGAL
+         CLC  MOVVAL(1),=C's'
+         BE   NOMOV1
+         LA   4,TCENTRO
+         ST   4,TORIGEN
+         LA   4,TIZQ
+         ST   4,TDESTINO
+         BAL  2,MOVLEGAL
+NOMOV1   L    2,RETURN2
+         BR   2
+* mueve entre la torre izquierda y la derecha, en el sentido
+* que sea valido
+IZQ2DER  ST   2,RETURN2
+         LA   4,TIZQ
+         ST   4,TORIGEN
+         LA   4,TDER
+         ST   4,TDESTINO
+         BAL  2,MOVLEGAL
+         CLC  MOVVAL(1),=C's'
+         BE   NOMOV2
+         LA   4,TDER
+         ST   4,TORIGEN
+         LA   4,TIZQ
+         ST   4,TDESTINO
+         BAL  2,MOVLEGAL
+NOMOV2   L    2,RETURN2
+         BR   2
+
+* mueve entre la torre central y la derecha, en el sentido
+* que sea valido
+CEN2DER  ST   2,RETURN2
+         LA   4,TCENTRO
+         ST   4,TORIGEN
+         LA   4,TDER
+         ST   4,TDESTINO
+         BAL  2,MOVLEGAL
+         CLC  MOVVAL(1),=C's'
+         BE   NOMOV3
+         LA   4,TDER
+         ST   4,TORIGEN
+         LA   4,TCENTRO
+         ST   4,TDESTINO
+         BAL  2,MOVLEGAL
+NOMOV3   L    2,RETURN2
+         BR   2
 
 *Si es posible, mueve desde la torre guardada en TORIGEN hasta
 *la guardada en TDESTINO. deja 's'en MOVVAL si el movimiento es legal
@@ -202,9 +252,10 @@ VACIO    DC    X'7FFFFFFF' * Representa un lugar que no tiene disco,
 
 *variable usada para guardar una direccion de retorno
 RETURN1  DS    F
+RETURN2  DS    F
 *Variables usadas en las operaciones de una torre
 ENMANO   DS    F *aca guardo el disco que saco y estoy por poner
 MOVVAL   DS    C *contiene 's' si el movimiento se realizo con exito
 TDESTINO DS    F *punteros a torres
-TORIGEN DS    F
+TORIGEN  DS    F
          END
