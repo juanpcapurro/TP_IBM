@@ -17,9 +17,15 @@ HANOI    SUBENTRY BASES = (3)
          B     FIN
 PAR      BAL   2,SHWALL
          LA    4,TIZQ
-         ST    4,OTRTORRE
+         ST    4,TORIGEN
          LA    4,TDER
-         ST    4,UNATORRE
+         ST    4,TDESTINO
+         BAL   2,MOVLEGAL
+         BAL   2,SHWALL
+         LA    4,TIZQ
+         ST    4,TORIGEN
+         LA    4,TCENTRO
+         ST    4,TDESTINO
          BAL   2,MOVLEGAL
          BAL   2,SHWALL
          B     FIN
@@ -28,26 +34,29 @@ ABEXIT   WTO   'Entrada invalida. Saliendo.'
 
 FIN      SUBEXIT
 
-*Si es posible, mueve desde la torre guardada en OTRTORRE hasta
-*la guardada en UNATORRE. deja 's'en MOVVAL si el movimiento es legal
+*Si es posible, mueve desde la torre guardada en TORIGEN hasta
+*la guardada en TDESTINO. deja 's'en MOVVAL si el movimiento es legal
 *n en otro caso. Si no es legal, no mueve. Usa R4,R6
 MOVLEGAL ST   2,RETURN1
-         L    4,UNATORRE
+         L    4,TDESTINO
          BAL  2,VERDISC
          L    6,ENMANO
-         L    4,OTRTORRE
+         L    4,TORIGEN
          BAL  2,VERDISC
-         CLC  ENMANO(4),=F'-1'
+         CLC  ENMANO(4),=F'0'
          BRE  ILEGAL
+         C    6,=F'0' *caso torre de destino vacia
+         BRE  LEGAL
          C    6,ENMANO
-         BNL  ILEGAL
-         MVC  MOVVAL(1),=C's'
+         BNH  ILEGAL
+LEGAL    MVC  MOVVAL(1),=C's'
          BAL  2,SACAR
-         L    4,UNATORRE
+         L    4,TDESTINO
          BAL  2,PONER
          L    2,RETURN1
          BR   2
 ILEGAL   MVC  MOVVAL(1),=C'n'
+         L    2,RETURN1
          BR   2
 
 
@@ -60,11 +69,11 @@ VERDISC  L     5,0(4)
          A     5,0(4)
          MVC   ENMANO(4),0(5)
          BR    2
-VACIA    MVC   ENMANO(4),=F'-1'
+VACIA    MVC   ENMANO(4),=F'0'
          BR    2
 
 *Saca el ultimo disco de la torre cuya direccion esta en R4
-*Deja en ENMANO el diametro del disco, o un valor negativo si
+*Deja en ENMANO el diametro del disco, o 0 si
 *la torre estaba vacia. Usa R5.
 SACAR    L     5,0(4)
          C     5,=F'0'
@@ -77,7 +86,7 @@ SACAR    L     5,0(4)
          S     5,=F'4' *decremento el indice
          ST    5,0(4)
          BR    2
-TVACIA   MVC   ENMANO(4),=F'-1'
+TVACIA   MVC   ENMANO(4),=F'0'
          BR    2
 
 *Pone un disco en la torre cuya direccion esta en R4
@@ -187,11 +196,15 @@ WTOBLOC  DC    H'34'
          DC    H'0'
 TXTOUT   DS    CL30
 
+VACIO    DC    X'7FFFFFFF' * Representa un lugar que no tiene disco,
+* es el mayor valor que tiene un bpf c/s de 32bits para ayudarme con
+* las comparaciones
+
 *variable usada para guardar una direccion de retorno
 RETURN1  DS    F
 *Variables usadas en las operaciones de una torre
 ENMANO   DS    F *aca guardo el disco que saco y estoy por poner
 MOVVAL   DS    C *contiene 's' si el movimiento se realizo con exito
-UNATORRE DS    F *punteros a torres
-OTRTORRE DS    F
+TDESTINO DS    F *punteros a torres
+TORIGEN DS    F
          END
