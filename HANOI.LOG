@@ -1,4 +1,4 @@
-19:49:27 HANOI     EZ390 START USING z390 V1.5.06 ON J2SE 1.8.0_131 06/03/17
+20:28:18 HANOI     EZ390 START USING z390 V1.5.06 ON J2SE 1.8.0_131 06/03/17
 EZ390I Copyright 2011 Automated Software Tools Corporation
 EZ390I z390 is licensed under GNU General Public License
 EZ390I program = /home/vasectomio/Documents/GitHub/organizacion_del_computador/TP_IBM/HANOI.390
@@ -30,19 +30,30 @@ XXXX      X
 
 
 
-XX
-XXX
-XXXX                X
-
-
-
-
-
-
-
 
 XXX
-XXXX      XX        X
+XXXX      X         XX
+
+
+
+
+
+
+
+
+XXX                 X
+XXXX                XX
+
+
+
+
+
+
+
+
+                    X
+XXXX      XXX       XX
+
 
 
 
@@ -51,8 +62,108 @@ XXXX      XX        X
 
 
 X
-XXX
-XXXX      XX
-EZ390I instructions/sec     = 35557
+XXXX      XXX       XX
+
+
+
+
+
+
+
+
+X         XX
+XXXX      XXX
+
+
+
+
+
+
+
+          X
+          XX
+XXXX      XXX
+
+
+
+
+
+
+
+          X
+          XX
+          XXX       XXXX
+
+
+
+
+
+
+
+
+          XX        X
+          XXX       XXXX
+
+
+
+
+
+
+
+
+                    X
+XX        XXX       XXXX
+
+
+
+
+
+
+
+
+X
+XX        XXX       XXXX
+
+
+
+
+
+
+
+
+X                   XXX
+XX                  XXXX
+
+
+
+
+
+
+
+
+                    XXX
+XX        X         XXXX
+
+
+
+
+
+
+
+                    XX
+                    XXX
+          X         XXXX
+
+
+
+
+
+
+                    X
+                    XX
+                    XXX
+                    XXXX
+Puzzle completado!. Saliendo.
+EZ390I instructions/sec     = 88594
 EZ390I total errors         = 0
-19:49:27 HANOI     EZ390 ENDED   RC= 0 SEC= 0 MEM(MB)= 18 IO=70 INS=1849
+20:28:18 HANOI     EZ390 ENDED   RC= 0 SEC= 0 MEM(MB)= 19 IO=181 INS=6113

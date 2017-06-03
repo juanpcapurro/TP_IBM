@@ -15,21 +15,27 @@ HANOI    SUBENTRY BASES = (3)
          BAL   2,RESIMP
          BAL   2,SHWALL
          B     FIN
-PAR      BAL   2,SHWALL
-         BAL   2,IZQ2CEN
-         BAL   2,SHWALL
-         BAL   2,CEN2DER
-         BAL   2,SHWALL
-         BAL   2,IZQ2CEN
-         BAL   2,SHWALL
-         BAL   2,IZQ2DER
-         BAL   2,SHWALL
+PAR      BAL   2,RESPAR
          B     FIN
 ABEXIT   WTO   'Entrada invalida. Saliendo.'
          B     FIN
 
 FIN      SUBEXIT
 
+*verifica si ya esta resuelto el puzzle. De ser asi, muestra un
+*mensaje y termina el programa. Es un toque spaghetti
+*pero eso me permite no repetir tanto codigo
+CHECKSOL ST 2,RETURN3
+         CLC  IINDEX(4),=F'0'
+         BRNE NOSOL
+         CLC  CINDEX(4),=F'0'
+         BRE  SOL
+         CLC  DINDEX(4),=F'0'
+         BRNE NOSOL
+SOL      WTO  'Puzzle completado!. Saliendo.'
+         B    FIN
+NOSOL    L    2,RETURN3
+         BR   2
 
 * mueve entre la torre izquierda y la central, en el sentido
 * que sea valido
@@ -65,7 +71,6 @@ IZQ2DER  ST   2,RETURN2
          BAL  2,MOVLEGAL
 NOMOV2   L    2,RETURN2
          BR   2
-
 * mueve entre la torre central y la derecha, en el sentido
 * que sea valido
 CEN2DER  ST   2,RETURN2
@@ -151,11 +156,22 @@ PONER    LR    5,4
          ST    5,0(4)
          BR    2
 
-
 RESIMP   WTO   'resolucion impar'
          BR    2
 
-RESPAR   WTO   'resolucion par'
+RESPAR   ST    2,RETURN4
+         BAL   2,SHWALL
+LPPAR    BAL   2,IZQ2CEN
+         BAL   2,SHWALL
+         BAL   2,CHECKSOL
+         BAL   2,IZQ2DER
+         BAL   2,SHWALL
+         BAL   2,CHECKSOL
+         BAL   2,CEN2DER
+         BAL   2,SHWALL
+         BAL   2,CHECKSOL
+         B     LPPAR
+         L     2,RETURN4
          BR    2
 
 SHWALL   MVC   TXTOUT(30),=30C' '
@@ -246,13 +262,11 @@ WTOBLOC  DC    H'34'
          DC    H'0'
 TXTOUT   DS    CL30
 
-VACIO    DC    X'7FFFFFFF' * Representa un lugar que no tiene disco,
-* es el mayor valor que tiene un bpf c/s de 32bits para ayudarme con
-* las comparaciones
-
 *variable usada para guardar una direccion de retorno
 RETURN1  DS    F
 RETURN2  DS    F
+RETURN3  DS    F
+RETURN4  DS    F
 *Variables usadas en las operaciones de una torre
 ENMANO   DS    F *aca guardo el disco que saco y estoy por poner
 MOVVAL   DS    C *contiene 's' si el movimiento se realizo con exito
