@@ -16,25 +16,11 @@ HANOI    SUBENTRY BASES = (3)
          BAL   2,SHWALL
          B     FIN
 PAR      BAL   2,SHWALL
-         BAL   2,RESPAR
          LA    4,TIZQ
-         BAL   2,SACAR
-         BAL   2,SHWALL
-         BAL   2,RESPAR
-         LA    4,TIZQ
-         BAL   2,SACAR
-         BAL   2,SHWALL
-         BAL   2,RESPAR
-         LA    4,TIZQ
-         BAL   2,SACAR
-         BAL   2,SHWALL
-         BAL   2,RESPAR
-         LA    4,TIZQ
-         BAL   2,SACAR
-         BAL   2,SHWALL
-         BAL   2,RESPAR
-         LA    4,TIZQ
-         BAL   2,SACAR
+         ST    4,OTRTORRE
+         LA    4,TDER
+         ST    4,UNATORRE
+         BAL   2,MOVLEGAL
          BAL   2,SHWALL
          B     FIN
 ABEXIT   WTO   'Entrada invalida. Saliendo.'
@@ -42,22 +28,70 @@ ABEXIT   WTO   'Entrada invalida. Saliendo.'
 
 FIN      SUBEXIT
 
+*Si es posible, mueve desde la torre guardada en OTRTORRE hasta
+*la guardada en UNATORRE. deja 's'en MOVVAL si el movimiento es legal
+*n en otro caso. Si no es legal, no mueve. Usa R4,R6
+MOVLEGAL ST   2,RETURN1
+         L    4,UNATORRE
+         BAL  2,VERDISC
+         L    6,ENMANO
+         L    4,OTRTORRE
+         BAL  2,VERDISC
+         CLC  ENMANO(4),=F'-1'
+         BRE  ILEGAL
+         C    6,ENMANO
+         BNL  ILEGAL
+         MVC  MOVVAL(1),=C's'
+         BAL  2,SACAR
+         L    4,UNATORRE
+         BAL  2,PONER
+         L    2,RETURN1
+         BR   2
+ILEGAL   MVC  MOVVAL(1),=C'n'
+         BR   2
+
+
+*deja en ENMANO el diametro del ultimo disco de la torre, sin sacarlo
+*la direccion de la torre esta guardada en R4
+VERDISC  L     5,0(4)
+         C     5,=F'0'
+         BRNH  VACIA
+         LR    5,4
+         A     5,0(4)
+         MVC   ENMANO(4),0(5)
+         BR    2
+VACIA    MVC   ENMANO(4),=F'-1'
+         BR    2
+
 *Saca el ultimo disco de la torre cuya direccion esta en R4
-*Deja en R1 el diametro del disco, o un valor negativo si
+*Deja en ENMANO el diametro del disco, o un valor negativo si
 *la torre estaba vacia. Usa R5.
 SACAR    L     5,0(4)
          C     5,=F'0'
          BRNH  TVACIA
          LR    5,4
          A     5,0(4)
-         L     1,0(5)
+         MVC   ENMANO(4),0(5)
          MVC   0(4,5),=F'0' *borro el disco
          L     5,0(4)
          S     5,=F'4' *decremento el indice
          ST    5,0(4)
          BR    2
-TVACIA   L     1,=F'-1'
+TVACIA   MVC   ENMANO(4),=F'-1'
          BR    2
+
+*Pone un disco en la torre cuya direccion esta en R4
+*No se fija si la operacion es valida
+*El diametro del disco esta en ENMANO
+PONER    LR    5,4
+         A     5,0(4)
+         A     5,=F'4'
+         MVC   0(4,5),ENMANO
+         L     5,0(4)
+         A     5,=F'4'
+         ST    5,0(4)
+         BR    2
+
 
 RESIMP   WTO   'resolucion impar'
          BR    2
@@ -156,5 +190,8 @@ TXTOUT   DS    CL30
 *variable usada para guardar una direccion de retorno
 RETURN1  DS    F
 *Variables usadas en las operaciones de una torre
-COLOCO   DS    C
+ENMANO   DS    F *aca guardo el disco que saco y estoy por poner
+MOVVAL   DS    C *contiene 's' si el movimiento se realizo con exito
+UNATORRE DS    F *punteros a torres
+OTRTORRE DS    F
          END

@@ -1,11 +1,11 @@
-19:06:40 HANOI     MZ390 START USING z390 V1.5.06 ON J2SE 1.8.0_131 06/02/17
+21:05:54 HANOI     MZ390 START USING z390 V1.5.06 ON J2SE 1.8.0_131 06/02/17
 AZ390I Copyright 2011 Automated Software Tools Corporation
 AZ390I z390 is licensed under GNU General Public License
 AZ390I program = /home/vasectomio/Documents/GitHub/organizacion_del_computador/TP_IBM/HANOI
 AZ390I options = sysmac(/home/vasectomio/lib/z390/mac+.) 
-  syscpy(/home/vasectomio/lib/z390/mac+.) test notime
+  syscpy(/home/vasectomio/lib/z390/mac+.)
 External Symbol Definitions
- ESD=0001 LOC=00000000 LEN=00000400 TYPE=CST NAME=HANOI
+ ESD=0001 LOC=00000000 LEN=00000468 TYPE=CST NAME=HANOI
 Assembler Listing
 000000                                        (1/1)1 HANOI    SUBENTRY BASES = (3)
 000000                                       (2/78)2+HANOI    CSECT 
@@ -14,7 +14,7 @@ Assembler Listing
 000008 0000000000000000                     (2/170)5+         DC    18F'0'
 000050 C8C1D5D6C9404040                     (2/171)6+         DC    CL8'HANOI'
 000058 F0F661F0F261F1F7                     (2/172)7+         DC    CL8'06/02/17'
-000060 F1F94BF0F6404040                     (2/173)8+         DC    CL8'19.06'
+000060 F2F14BF0F5404040                     (2/173)8+         DC    CL8'21.05'
 000068 50FD0008                             (2/174)9+         ST    15,8(13)
 00006C 50DF0004                            (2/175)10+         ST    13,4(15)
 000070 18DF                                (2/176)11+         LR    13,15
@@ -28,244 +28,288 @@ LISTUSE HANOI    ESD=0001 LOC=00000008 LEN=01000 REG=D OFF=00000 LAB=
 000072                                       (1/7)19 *         PACK  PINPUT(8),CINPUT(2)
 000072                                       (1/8)20 *         CVB   5,PINPUT
 000072                                       (1/9)21 *         ST    5,CNTDISC
-000072 4520D23E                000246       (1/10)22          BAL   2,INIT
-000076 5850D284                00028C       (1/11)23          L     5,CNTDISC
-00007A 5450D338                000340       (1/12)24          N     5,=F'1'
-00007E 5550D33C                000344       (1/13)25          CL    5,=F'0'
+000072 4520D294                00029C       (1/10)22          BAL   2,INIT
+000076 5850D2DC                0002E4       (1/11)23          L     5,CNTDISC
+00007A 5450D3A0                0003A8       (1/12)24          N     5,=F'1'
+00007E 5550D3A4                0003AC       (1/13)25          CL    5,=F'0'
 000082 4780D08A                000092       (1/14)26          BE    PAR
-000086 4520D14E                000156       (1/15)27          BAL   2,RESIMP
-00008A 4520D184                00018C       (1/16)28          BAL   2,SHWALL
-00008E 47F0D10C                000114       (1/17)29          B     FIN
-000092 4520D184                00018C       (1/18)30 PAR      BAL   2,SHWALL
-000096 4520D16A                000172       (1/19)31          BAL   2,RESPAR
-00009A 4140D288                000290       (1/20)32          LA    4,TIZQ
-00009E 4520D11E                000126       (1/21)33          BAL   2,SACAR
-0000A2 4520D184                00018C       (1/22)34          BAL   2,SHWALL
-0000A6 4520D16A                000172       (1/23)35          BAL   2,RESPAR
-0000AA 4140D288                000290       (1/24)36          LA    4,TIZQ
-0000AE 4520D11E                000126       (1/25)37          BAL   2,SACAR
-0000B2 4520D184                00018C       (1/26)38          BAL   2,SHWALL
-0000B6 4520D16A                000172       (1/27)39          BAL   2,RESPAR
-0000BA 4140D288                000290       (1/28)40          LA    4,TIZQ
-0000BE 4520D11E                000126       (1/29)41          BAL   2,SACAR
-0000C2 4520D184                00018C       (1/30)42          BAL   2,SHWALL
-0000C6 4520D16A                000172       (1/31)43          BAL   2,RESPAR
-0000CA 4140D288                000290       (1/32)44          LA    4,TIZQ
-0000CE 4520D11E                000126       (1/33)45          BAL   2,SACAR
-0000D2 4520D184                00018C       (1/34)46          BAL   2,SHWALL
-0000D6 4520D16A                000172       (1/35)47          BAL   2,RESPAR
-0000DA 4140D288                000290       (1/36)48          LA    4,TIZQ
-0000DE 4520D11E                000126       (1/37)49          BAL   2,SACAR
-0000E2 4520D184                00018C       (1/38)50          BAL   2,SHWALL
-0000E6 47F0D10C                000114       (1/39)51          B     FIN
-0000EA                                      (1/40)52 ABEXIT   WTO   'Entrada invalida. Saliendo.'
-0000EA                                      (3/35)53+ABEXIT   DS    0H
-0000EA A7150012                00010E       (3/49)54+         BRAS  1,*+(WTO#0002_EOT-*+1)/2*2
-0000EE 001F0000C595A399                     (3/50)55+         DC    AL2(WTO#0002_EOT-*,0),C'Entrada invalida. Saliendo.'
-00010D                  0000010D            (3/51)56+WTO#0002_EOT     EQU *
-00010E 0A23                                 (3/52)57+         SVC   35
-000110 47F0D10C                000114       (1/41)59          B     FIN
-000114                                      (1/43)60 FIN      SUBEXIT 
-000114                                      (4/29)61+FIN      DS    0H
-000114 41F00000                             (4/33)62+         LA    15,0
-000118 58D0D004                             (4/50)63+         L     13,4(,13)
-00011C 58E0D00C                             (4/51)64+         L     14,12(,13)
-000120 982CD01C                             (4/52)65+         LM    2,12,28(13)
-000124 07FE                                 (4/53)66+         BR    14
-000126                                      (1/45)68 *Saca el ultimo disco de la torre cuya direccion esta en R4
-000126                                      (1/46)69 *Deja en R1 el diametro del disco, o un valor negativo si
-000126                                      (1/47)70 *la torre estaba vacia. Usa R5.
-000126 58540000                             (1/48)71 SACAR    L     5,0(4)
-00012A 5950D33C                000344       (1/49)72          C     5,=F'0'
-00012E A7D40011                000150       (1/50)73          BRNH  TVACIA
-000132 1854                                 (1/51)74          LR    5,4
-000134 5A540000                             (1/52)75          A     5,0(4)
-000138 58150000                             (1/53)76          L     1,0(5)
-00013C D2035000D33C            000344       (1/54)77          MVC   0(4,5),=F'0' *borro el disco
-000142 58540000                             (1/55)78          L     5,0(4)
-000146 5B50D340                000348       (1/56)79          S     5,=F'4' *decremento el indice
-00014A 50540000                             (1/57)80          ST    5,0(4)
-00014E 07F2                                 (1/58)81          BR    2
-000150 5810D344                00034C       (1/59)82 TVACIA   L     1,=F'-1'
-000154 07F2                                 (1/60)83          BR    2
-000156                                      (1/62)84 RESIMP   WTO   'resolucion impar'
-000156                                      (3/35)85+RESIMP   DS    0H
-000156 A715000C                00016E       (3/49)86+         BRAS  1,*+(WTO#0004_EOT-*+1)/2*2
-00015A 001400009985A296                     (3/50)87+         DC    AL2(WTO#0004_EOT-*,0),C'resolucion impar'
-00016E                  0000016E            (3/51)88+WTO#0004_EOT     EQU *
-00016E 0A23                                 (3/52)89+         SVC   35
-000170 07F2                                 (1/63)91          BR    2
-000172                                      (1/65)92 RESPAR   WTO   'resolucion par'
-000172                                      (3/35)93+RESPAR   DS    0H
-000172 A715000B                000188       (3/49)94+         BRAS  1,*+(WTO#0005_EOT-*+1)/2*2
-000176 001200009985A296                     (3/50)95+         DC    AL2(WTO#0005_EOT-*,0),C'resolucion par'
-000188                  00000188            (3/51)96+WTO#0005_EOT     EQU *
-000188 0A23                                 (3/52)97+         SVC   35
-00018A 07F2                                 (1/66)99          BR    2
-00018C D21DD310D3CC     000318 0003D4      (1/68)100 SHWALL   MVC   TXTOUT(30),=30C' '
-000192 41600024                            (1/69)101          LA    6,36 *indice de disco (posicion 9, largo fw=4)
-000196 5020D330                000338      (1/70)102          ST    2,RETURN1
-00019A 41400000                            (1/71)103 LPSHOW   LA    4,0 *indice de TXTOUT, 0 para tizq, 10 para tcentro
-00019E 4180D28C                000294      (1/72)104          LA    8,IVECT
-0001A2 4520D1CE                0001D6      (1/73)105          BAL   2,SHWDISC
-0001A6 4140000A                            (1/74)106          LA    4,10
-0001AA 4180D2B8                0002C0      (1/75)107          LA    8,CVECT
-0001AE 4520D1CE                0001D6      (1/76)108          BAL   2,SHWDISC
-0001B2 41400014                            (1/77)109          LA    4,20
-0001B6 4180D2E4                0002EC      (1/78)110          LA    8,DVECT
-0001BA 4520D1CE                0001D6      (1/79)111          BAL   2,SHWDISC
-0001BE                                     (1/80)112          WTO   MF=(E,WTOBLOC)
-0001BE 4110D30C                000314      (3/61)113+         LA    1,WTOBLOC
-0001C2 0A23                                (3/66)114+         SVC   35
-0001C4 5B60D340                000348      (1/81)116          S     6,=F'4'
-0001C8 5960D33C                000344      (1/82)117          C     6,=F'0'
-0001CC 47B0D192                00019A      (1/83)118          BNL   LPSHOW
-0001D0 5820D330                000338      (1/84)119          L     2,RETURN1
-0001D4 07F2                                (1/85)120          BR    2
-0001D6                                     (1/87)121 *escribe a partir del indice de txtout guardado en R4
-0001D6                                     (1/88)122 *accede al disco cuya direccion tiene base R8 e indice R6
-0001D6                                     (1/89)123 *Usa R7
-0001D6 1A86                                (1/90)124 SHWDISC  AR    8,6
-0001D8 D5038000D33C            000344      (1/91)125          CLC   0(4,8),=F'0'
-0001DE 4780D1F2                0001FA      (1/92)126          BE    NOOUT
-0001E2 58880000                            (1/93)127          L     8,0(8)
-0001E6 4170D310                000318      (1/94)128          LA    7,TXTOUT
-0001EA 1A74                                (1/95)129          AR    7,4
-0001EC D2007000D3EA            0003F2      (1/96)130 LPDISC   MVC   0(1,7),=C'X'
-0001F2 5A70D338                000340      (1/97)131          A     7,=F'1'
-0001F6 4680D1E4                0001EC      (1/98)132          BCT   8,LPDISC
-0001FA 07F2                                (1/99)133 NOOUT    BR    2
-0001FC D500D274D3EB     00027C 0003F3     (1/101)134 VALIDAR  CLC   CINPUT(1),=C'0'
-000202 4770D21A                000222     (1/102)135          BNE   DIEZ
-000206 D500D275D3EC     00027D 0003F4     (1/103)136          CLC   CINPUT+1(1),=C'3'
-00020C 4740D236                00023E     (1/104)137          BL    INVAL
-000210 D500D275D3ED     00027D 0003F5     (1/105)138          CLC   CINPUT+1(1),=C'9'
-000216 4720D236                00023E     (1/106)139          BH    INVAL *teoricamente no se daria nunca
-00021A D200D280D3EE     000288 0003F6     (1/107)140          MVC   VALIN,=C'S'
-000220 07F2                               (1/108)141          BR    2
-000222 D500D274D3EF     00027C 0003F7     (1/109)142 DIEZ     CLC   CINPUT(1),=C'1'
-000228 4770D236                00023E     (1/110)143          BNE   INVAL
-00022C D500D275D3EB     00027D 0003F3     (1/111)144          CLC   CINPUT+1(1),=C'0'
-000232 4770D236                00023E     (1/112)145          BNE   INVAL
-000236 D200D280D3EE     000288 0003F6     (1/113)146          MVC   VALIN,=C'S'
-00023C 07F2                               (1/114)147          BR    2
-00023E D200D280D3F0     000288 0003F8     (1/115)148 INVAL    MVC   VALIN,=C'N'
-000244 07F2                               (1/116)149          BR    2
-000246                                    (1/118)150 *el indice es el offset desde TIZQ, considerando el espacio que ocupa
-000246                                    (1/119)151 *guardar el mismo indice, por eso no le resto 1
-000246 D283D288D348     000290 000350     (1/120)152 INIT     MVC   TIZQ(132),=33F'0'
-00024C 5840D284                00028C     (1/121)153          L     4,CNTDISC
-000250 1854                               (1/122)154          LR    5,4
-000252 41400000                           (1/123)155          LA    4,0
-000256 5C40D340                000348     (1/124)156          M     4,=F'4'
-00025A 1845                               (1/125)157          LR    4,5
-00025C 5040D288                000290     (1/126)158          ST    4,IINDEX
-000260 41400000                           (1/127)159          LA    4,0
-000264 5850D284                00028C     (1/128)160          L     5,CNTDISC
-000268 5054D28C                000294     (1/129)161 LPLOAD   ST    5,IVECT(4)
-00026C 5A40D340                000348     (1/130)162          A     4,=F'4'
-000270 4650D260                000268     (1/131)163          BCT   5,LPLOAD
-000274 07F2                               (1/132)164          BR    2
-000278 00000000                           (1/134)165 WAITECB  DC    F'0'
-00027C                                    (1/135)166 CINPUT   DS    CL2
-000280 0000000000000000                   (1/136)167 PINPUT   DC    D'0'
-000288                                    (1/137)168 VALIN    DS    C
-00028C 00000004                           (1/138)169 CNTDISC  DC    F'4'
-000290                                    (1/140)170 TIZQ     DS    0CL44
-000290                                    (1/141)171 IINDEX   DS    F
-000294                                    (1/142)172 IVECT    DS    10F
-0002BC                                    (1/144)173 TCENTRO  DS    0CL44
-0002BC                                    (1/145)174 CINDEX   DS    F
-0002C0                                    (1/146)175 CVECT    DS    10F
-0002E8                                    (1/148)176 TDER     DS    0CL44
-0002E8                                    (1/149)177 DINDEX   DS    F
-0002EC                                    (1/150)178 DVECT    DS    10F
-000314 0022                               (1/152)179 WTOBLOC  DC    H'34'
-000316 0000                               (1/153)180          DC    H'0'
-000318                                    (1/154)181 TXTOUT   DS    CL30
-000336                                    (1/156)182 *variable usada para guardar una direccion de retorno
-000338                                    (1/157)183 RETURN1  DS    F
-00033C                                    (1/158)184 *Variables usadas en las operaciones de una torre
-00033C                                    (1/159)185 COLOCO   DS    C
-00033D                                    (1/160)186          END 
-000340 00000001         =F'1'
-000344 00000000         =F'0'
-000348 00000004         =F'4'
-00034C FFFFFFFF         =F'-1'
-000350 0000000000000000 =33F'0'
-0003D4 4040404040404040 =30C' '
-0003F2 E7               =C'X'
-0003F3 F0               =C'0'
-0003F4 F3               =C'3'
-0003F5 F9               =C'9'
-0003F6 E2               =C'S'
-0003F7 F1               =C'1'
-0003F8 D5               =C'N'
+000086 4520D1A4                0001AC       (1/15)27          BAL   2,RESIMP
+00008A 4520D1DA                0001E2       (1/16)28          BAL   2,SHWALL
+00008E 47F0D0D4                0000DC       (1/17)29          B     FIN
+000092 4520D1DA                0001E2       (1/18)30 PAR      BAL   2,SHWALL
+000096 4140D2E0                0002E8       (1/19)31          LA    4,TIZQ
+00009A 5040D398                0003A0       (1/20)32          ST    4,OTRTORRE
+00009E 4140D338                000340       (1/21)33          LA    4,TDER
+0000A2 5040D394                00039C       (1/22)34          ST    4,UNATORRE
+0000A6 4520D0E6                0000EE       (1/23)35          BAL   2,MOVLEGAL
+0000AA 4520D1DA                0001E2       (1/24)36          BAL   2,SHWALL
+0000AE 47F0D0D4                0000DC       (1/25)37          B     FIN
+0000B2                                      (1/26)38 ABEXIT   WTO   'Entrada invalida. Saliendo.'
+0000B2                                      (3/35)39+ABEXIT   DS    0H
+0000B2 A7150012                0000D6       (3/49)40+         BRAS  1,*+(WTO#0002_EOT-*+1)/2*2
+0000B6 001F0000C595A399                     (3/50)41+         DC    AL2(WTO#0002_EOT-*,0),C'Entrada invalida. Saliendo.'
+0000D5                  000000D5            (3/51)42+WTO#0002_EOT     EQU *
+0000D6 0A23                                 (3/52)43+         SVC   35
+0000D8 47F0D0D4                0000DC       (1/27)45          B     FIN
+0000DC                                      (1/29)46 FIN      SUBEXIT 
+0000DC                                      (4/29)47+FIN      DS    0H
+0000DC 41F00000                             (4/33)48+         LA    15,0
+0000E0 58D0D004                             (4/50)49+         L     13,4(,13)
+0000E4 58E0D00C                             (4/51)50+         L     14,12(,13)
+0000E8 982CD01C                             (4/52)51+         LM    2,12,28(13)
+0000EC 07FE                                 (4/53)52+         BR    14
+0000EE                                      (1/31)54 *Si es posible, mueve desde la torre guardada en OTRTORRE hasta
+0000EE                                      (1/32)55 *la guardada en UNATORRE. deja 's'en MOVVAL si el movimiento es legal
+0000EE                                      (1/33)56 *n en otro caso. Si no es legal, no mueve. Usa R4,R6
+0000EE 5020D388                000390       (1/34)57 MOVLEGAL ST   2,RETURN1
+0000F2 5840D394                00039C       (1/35)58          L    4,UNATORRE
+0000F6 4520D130                000138       (1/36)59          BAL  2,VERDISC
+0000FA 5860D38C                000394       (1/37)60          L    6,ENMANO
+0000FE 5840D398                0003A0       (1/38)61          L    4,OTRTORRE
+000102 4520D130                000138       (1/39)62          BAL  2,VERDISC
+000106 D503D38CD3AC     000394 0003B4       (1/40)63          CLC  ENMANO(4),=F'-1'
+00010C A7840012                000130       (1/41)64          BRE  ILEGAL
+000110 5960D38C                000394       (1/42)65          C    6,ENMANO
+000114 47B0D128                000130       (1/43)66          BNL  ILEGAL
+000118 D200D390D453     000398 00045B       (1/44)67          MVC  MOVVAL(1),=C's'
+00011E 4520D152                00015A       (1/45)68          BAL  2,SACAR
+000122 5840D394                00039C       (1/46)69          L    4,UNATORRE
+000126 4520D186                00018E       (1/47)70          BAL  2,PONER
+00012A 5820D388                000390       (1/48)71          L    2,RETURN1
+00012E 07F2                                 (1/49)72          BR   2
+000130 D200D390D454     000398 00045C       (1/50)73 ILEGAL   MVC  MOVVAL(1),=C'n'
+000136 07F2                                 (1/51)74          BR   2
+000138                                      (1/54)75 *deja en ENMANO el diametro del ultimo disco de la torre, sin sacarlo
+000138                                      (1/55)76 *la direccion de la torre esta guardada en R4
+000138 58540000                             (1/56)77 VERDISC  L     5,0(4)
+00013C 5950D3A4                0003AC       (1/57)78          C     5,=F'0'
+000140 A7D40009                000152       (1/58)79          BRNH  VACIA
+000144 1854                                 (1/59)80          LR    5,4
+000146 5A540000                             (1/60)81          A     5,0(4)
+00014A D203D38C5000     000394              (1/61)82          MVC   ENMANO(4),0(5)
+000150 07F2                                 (1/62)83          BR    2
+000152 D203D38CD3AC     000394 0003B4       (1/63)84 VACIA    MVC   ENMANO(4),=F'-1'
+000158 07F2                                 (1/64)85          BR    2
+00015A                                      (1/66)86 *Saca el ultimo disco de la torre cuya direccion esta en R4
+00015A                                      (1/67)87 *Deja en ENMANO el diametro del disco, o un valor negativo si
+00015A                                      (1/68)88 *la torre estaba vacia. Usa R5.
+00015A 58540000                             (1/69)89 SACAR    L     5,0(4)
+00015E 5950D3A4                0003AC       (1/70)90          C     5,=F'0'
+000162 A7D40012                000186       (1/71)91          BRNH  TVACIA
+000166 1854                                 (1/72)92          LR    5,4
+000168 5A540000                             (1/73)93          A     5,0(4)
+00016C D203D38C5000     000394              (1/74)94          MVC   ENMANO(4),0(5)
+000172 D2035000D3A4            0003AC       (1/75)95          MVC   0(4,5),=F'0' *borro el disco
+000178 58540000                             (1/76)96          L     5,0(4)
+00017C 5B50D3A8                0003B0       (1/77)97          S     5,=F'4' *decremento el indice
+000180 50540000                             (1/78)98          ST    5,0(4)
+000184 07F2                                 (1/79)99          BR    2
+000186 D203D38CD3AC     000394 0003B4      (1/80)100 TVACIA   MVC   ENMANO(4),=F'-1'
+00018C 07F2                                (1/81)101          BR    2
+00018E                                     (1/83)102 *Pone un disco en la torre cuya direccion esta en R4
+00018E                                     (1/84)103 *No se fija si la operacion es valida
+00018E                                     (1/85)104 *El diametro del disco esta en ENMANO
+00018E 1854                                (1/86)105 PONER    LR    5,4
+000190 5A540000                            (1/87)106          A     5,0(4)
+000194 5A50D3A8                0003B0      (1/88)107          A     5,=F'4'
+000198 D2035000D38C            000394      (1/89)108          MVC   0(4,5),ENMANO
+00019E 58540000                            (1/90)109          L     5,0(4)
+0001A2 5A50D3A8                0003B0      (1/91)110          A     5,=F'4'
+0001A6 50540000                            (1/92)111          ST    5,0(4)
+0001AA 07F2                                (1/93)112          BR    2
+0001AC                                     (1/96)113 RESIMP   WTO   'resolucion impar'
+0001AC                                     (3/35)114+RESIMP   DS    0H
+0001AC A715000C                0001C4      (3/49)115+         BRAS  1,*+(WTO#0004_EOT-*+1)/2*2
+0001B0 001400009985A296                    (3/50)116+         DC    AL2(WTO#0004_EOT-*,0),C'resolucion impar'
+0001C4                  000001C4           (3/51)117+WTO#0004_EOT     EQU *
+0001C4 0A23                                (3/52)118+         SVC   35
+0001C6 07F2                                (1/97)120          BR    2
+0001C8                                     (1/99)121 RESPAR   WTO   'resolucion par'
+0001C8                                     (3/35)122+RESPAR   DS    0H
+0001C8 A715000B                0001DE      (3/49)123+         BRAS  1,*+(WTO#0005_EOT-*+1)/2*2
+0001CC 001200009985A296                    (3/50)124+         DC    AL2(WTO#0005_EOT-*,0),C'resolucion par'
+0001DE                  000001DE           (3/51)125+WTO#0005_EOT     EQU *
+0001DE 0A23                                (3/52)126+         SVC   35
+0001E0 07F2                               (1/100)128          BR    2
+0001E2 D21DD368D434     000370 00043C     (1/102)129 SHWALL   MVC   TXTOUT(30),=30C' '
+0001E8 41600024                           (1/103)130          LA    6,36 *indice de disco (posicion 9, largo fw=4)
+0001EC 5020D388                000390     (1/104)131          ST    2,RETURN1
+0001F0 41400000                           (1/105)132 LPSHOW   LA    4,0 *indice de TXTOUT, 0 para tizq, 10 para tcentro
+0001F4 4180D2E4                0002EC     (1/106)133          LA    8,IVECT
+0001F8 4520D224                00022C     (1/107)134          BAL   2,SHWDISC
+0001FC 4140000A                           (1/108)135          LA    4,10
+000200 4180D310                000318     (1/109)136          LA    8,CVECT
+000204 4520D224                00022C     (1/110)137          BAL   2,SHWDISC
+000208 41400014                           (1/111)138          LA    4,20
+00020C 4180D33C                000344     (1/112)139          LA    8,DVECT
+000210 4520D224                00022C     (1/113)140          BAL   2,SHWDISC
+000214                                    (1/114)141          WTO   MF=(E,WTOBLOC)
+000214 4110D364                00036C      (3/61)142+         LA    1,WTOBLOC
+000218 0A23                                (3/66)143+         SVC   35
+00021A 5B60D3A8                0003B0     (1/115)145          S     6,=F'4'
+00021E 5960D3A4                0003AC     (1/116)146          C     6,=F'0'
+000222 47B0D1E8                0001F0     (1/117)147          BNL   LPSHOW
+000226 5820D388                000390     (1/118)148          L     2,RETURN1
+00022A 07F2                               (1/119)149          BR    2
+00022C                                    (1/121)150 *escribe a partir del indice de txtout guardado en R4
+00022C                                    (1/122)151 *accede al disco cuya direccion tiene base R8 e indice R6
+00022C                                    (1/123)152 *Usa R7
+00022C 1A86                               (1/124)153 SHWDISC  AR    8,6
+00022E D5038000D3A4            0003AC     (1/125)154          CLC   0(4,8),=F'0'
+000234 4780D248                000250     (1/126)155          BE    NOOUT
+000238 58880000                           (1/127)156          L     8,0(8)
+00023C 4170D368                000370     (1/128)157          LA    7,TXTOUT
+000240 1A74                               (1/129)158          AR    7,4
+000242 D2007000D452            00045A     (1/130)159 LPDISC   MVC   0(1,7),=C'X'
+000248 5A70D3A0                0003A8     (1/131)160          A     7,=F'1'
+00024C 4680D23A                000242     (1/132)161          BCT   8,LPDISC
+000250 07F2                               (1/133)162 NOOUT    BR    2
+000252 D500D2C8D455     0002D0 00045D     (1/135)163 VALIDAR  CLC   CINPUT(1),=C'0'
+000258 4770D270                000278     (1/136)164          BNE   DIEZ
+00025C D500D2C9D456     0002D1 00045E     (1/137)165          CLC   CINPUT+1(1),=C'3'
+000262 4740D28C                000294     (1/138)166          BL    INVAL
+000266 D500D2C9D457     0002D1 00045F     (1/139)167          CLC   CINPUT+1(1),=C'9'
+00026C 4720D28C                000294     (1/140)168          BH    INVAL *teoricamente no se daria nunca
+000270 D200D2D8D458     0002E0 000460     (1/141)169          MVC   VALIN,=C'S'
+000276 07F2                               (1/142)170          BR    2
+000278 D500D2C8D459     0002D0 000461     (1/143)171 DIEZ     CLC   CINPUT(1),=C'1'
+00027E 4770D28C                000294     (1/144)172          BNE   INVAL
+000282 D500D2C9D455     0002D1 00045D     (1/145)173          CLC   CINPUT+1(1),=C'0'
+000288 4770D28C                000294     (1/146)174          BNE   INVAL
+00028C D200D2D8D458     0002E0 000460     (1/147)175          MVC   VALIN,=C'S'
+000292 07F2                               (1/148)176          BR    2
+000294 D200D2D8D45A     0002E0 000462     (1/149)177 INVAL    MVC   VALIN,=C'N'
+00029A 07F2                               (1/150)178          BR    2
+00029C                                    (1/152)179 *el indice es el offset desde TIZQ, considerando el espacio que ocupa
+00029C                                    (1/153)180 *guardar el mismo indice, por eso no le resto 1
+00029C D283D2E0D3B0     0002E8 0003B8     (1/154)181 INIT     MVC   TIZQ(132),=33F'0'
+0002A2 5840D2DC                0002E4     (1/155)182          L     4,CNTDISC
+0002A6 1854                               (1/156)183          LR    5,4
+0002A8 41400000                           (1/157)184          LA    4,0
+0002AC 5C40D3A8                0003B0     (1/158)185          M     4,=F'4'
+0002B0 1845                               (1/159)186          LR    4,5
+0002B2 5040D2E0                0002E8     (1/160)187          ST    4,IINDEX
+0002B6 41400000                           (1/161)188          LA    4,0
+0002BA 5850D2DC                0002E4     (1/162)189          L     5,CNTDISC
+0002BE 5054D2E4                0002EC     (1/163)190 LPLOAD   ST    5,IVECT(4)
+0002C2 5A40D3A8                0003B0     (1/164)191          A     4,=F'4'
+0002C6 4650D2B6                0002BE     (1/165)192          BCT   5,LPLOAD
+0002CA 07F2                               (1/166)193          BR    2
+0002CC 00000000                           (1/168)194 WAITECB  DC    F'0'
+0002D0                                    (1/169)195 CINPUT   DS    CL2
+0002D8 0000000000000000                   (1/170)196 PINPUT   DC    D'0'
+0002E0                                    (1/171)197 VALIN    DS    C
+0002E4 00000004                           (1/172)198 CNTDISC  DC    F'4'
+0002E8                                    (1/174)199 TIZQ     DS    0CL44
+0002E8                                    (1/175)200 IINDEX   DS    F
+0002EC                                    (1/176)201 IVECT    DS    10F
+000314                                    (1/178)202 TCENTRO  DS    0CL44
+000314                                    (1/179)203 CINDEX   DS    F
+000318                                    (1/180)204 CVECT    DS    10F
+000340                                    (1/182)205 TDER     DS    0CL44
+000340                                    (1/183)206 DINDEX   DS    F
+000344                                    (1/184)207 DVECT    DS    10F
+00036C 0022                               (1/186)208 WTOBLOC  DC    H'34'
+00036E 0000                               (1/187)209          DC    H'0'
+000370                                    (1/188)210 TXTOUT   DS    CL30
+00038E                                    (1/190)211 *variable usada para guardar una direccion de retorno
+000390                                    (1/191)212 RETURN1  DS    F
+000394                                    (1/192)213 *Variables usadas en las operaciones de una torre
+000394                                    (1/193)214 ENMANO   DS    F *aca guardo el disco que saco y estoy por poner
+000398                                    (1/194)215 MOVVAL   DS    C *contiene 's' si el movimiento se realizo con exito
+00039C                                    (1/195)216 UNATORRE DS    F *punteros a torres
+0003A0                                    (1/196)217 OTRTORRE DS    F
+0003A4                                    (1/197)218          END 
+0003A8 00000001         =F'1'
+0003AC 00000000         =F'0'
+0003B0 00000004         =F'4'
+0003B4 FFFFFFFF         =F'-1'
+0003B8 0000000000000000 =33F'0'
+00043C 4040404040404040 =30C' '
+00045A E7               =C'X'
+00045B A2               =C's'
+00045C 95               =C'n'
+00045D F0               =C'0'
+00045E F3               =C'3'
+00045F F9               =C'9'
+000460 E2               =C'S'
+000461 F1               =C'1'
+000462 D5               =C'N'
 
 Symbol Table Listing
 
- SYM=ABEXIT   LOC=000000EA LEN=00000002 ESD=0001 TYPE=REL  XREF=53 
- SYM=CINDEX   LOC=000002BC LEN=00000004 ESD=0001 TYPE=REL  XREF=174 
- SYM=CINPUT   LOC=0000027C LEN=00000002 ESD=0001 TYPE=REL  XREF=166 134 136 138 142 
-  144 
- SYM=CNTDISC  LOC=0000028C LEN=00000004 ESD=0001 TYPE=REL  XREF=169 23 153 160 
- SYM=COLOCO   LOC=0000033C LEN=00000001 ESD=0001 TYPE=REL  XREF=185 
- SYM=CVECT    LOC=000002C0 LEN=00000004 ESD=0001 TYPE=REL  XREF=175 107 
- SYM=DIEZ     LOC=00000222 LEN=00000006 ESD=0001 TYPE=REL  XREF=142 135 
- SYM=DINDEX   LOC=000002E8 LEN=00000004 ESD=0001 TYPE=REL  XREF=177 
- SYM=DVECT    LOC=000002EC LEN=00000004 ESD=0001 TYPE=REL  XREF=178 110 
- SYM=FIN      LOC=00000114 LEN=00000002 ESD=0001 TYPE=REL  XREF=61 29 51 59 
- SYM=HANOI    LOC=00000000 LEN=00000400 ESD=0001 TYPE=CST  XREF=2 12 
- SYM=IINDEX   LOC=00000290 LEN=00000004 ESD=0001 TYPE=REL  XREF=171 158 
- SYM=INIT     LOC=00000246 LEN=00000006 ESD=0001 TYPE=REL  XREF=152 22 
- SYM=INVAL    LOC=0000023E LEN=00000006 ESD=0001 TYPE=REL  XREF=148 137 139 143 145 
- SYM=IVECT    LOC=00000294 LEN=00000004 ESD=0001 TYPE=REL  XREF=172 104 161 
- SYM=LPDISC   LOC=000001EC LEN=00000006 ESD=0001 TYPE=REL  XREF=130 132 
- SYM=LPLOAD   LOC=00000268 LEN=00000004 ESD=0001 TYPE=REL  XREF=161 163 
- SYM=LPSHOW   LOC=0000019A LEN=00000004 ESD=0001 TYPE=REL  XREF=103 118 
- SYM=NOOUT    LOC=000001FA LEN=00000002 ESD=0001 TYPE=REL  XREF=133 126 
+ SYM=ABEXIT   LOC=000000B2 LEN=00000002 ESD=0001 TYPE=REL  XREF=39 
+ SYM=CINDEX   LOC=00000314 LEN=00000004 ESD=0001 TYPE=REL  XREF=203 
+ SYM=CINPUT   LOC=000002D0 LEN=00000002 ESD=0001 TYPE=REL  XREF=195 163 165 167 171 
+  173 
+ SYM=CNTDISC  LOC=000002E4 LEN=00000004 ESD=0001 TYPE=REL  XREF=198 23 182 189 
+ SYM=CVECT    LOC=00000318 LEN=00000004 ESD=0001 TYPE=REL  XREF=204 136 
+ SYM=DIEZ     LOC=00000278 LEN=00000006 ESD=0001 TYPE=REL  XREF=171 164 
+ SYM=DINDEX   LOC=00000340 LEN=00000004 ESD=0001 TYPE=REL  XREF=206 
+ SYM=DVECT    LOC=00000344 LEN=00000004 ESD=0001 TYPE=REL  XREF=207 139 
+ SYM=ENMANO   LOC=00000394 LEN=00000004 ESD=0001 TYPE=REL  XREF=214 60 63 65 82 84 
+  94 100 108 
+ SYM=FIN      LOC=000000DC LEN=00000002 ESD=0001 TYPE=REL  XREF=47 29 37 45 
+ SYM=HANOI    LOC=00000000 LEN=00000468 ESD=0001 TYPE=CST  XREF=2 12 
+ SYM=IINDEX   LOC=000002E8 LEN=00000004 ESD=0001 TYPE=REL  XREF=200 187 
+ SYM=ILEGAL   LOC=00000130 LEN=00000006 ESD=0001 TYPE=REL  XREF=73 64 66 
+ SYM=INIT     LOC=0000029C LEN=00000006 ESD=0001 TYPE=REL  XREF=181 22 
+ SYM=INVAL    LOC=00000294 LEN=00000006 ESD=0001 TYPE=REL  XREF=177 166 168 172 174 
+ SYM=IVECT    LOC=000002EC LEN=00000004 ESD=0001 TYPE=REL  XREF=201 133 190 
+ SYM=LPDISC   LOC=00000242 LEN=00000006 ESD=0001 TYPE=REL  XREF=159 161 
+ SYM=LPLOAD   LOC=000002BE LEN=00000004 ESD=0001 TYPE=REL  XREF=190 192 
+ SYM=LPSHOW   LOC=000001F0 LEN=00000004 ESD=0001 TYPE=REL  XREF=132 147 
+ SYM=MOVLEGAL LOC=000000EE LEN=00000004 ESD=0001 TYPE=REL  XREF=57 35 
+ SYM=MOVVAL   LOC=00000398 LEN=00000001 ESD=0001 TYPE=REL  XREF=215 67 73 
+ SYM=NOOUT    LOC=00000250 LEN=00000002 ESD=0001 TYPE=REL  XREF=162 155 
+ SYM=OTRTORRE LOC=000003A0 LEN=00000004 ESD=0001 TYPE=REL  XREF=217 32 61 
  SYM=PAR      LOC=00000092 LEN=00000004 ESD=0001 TYPE=REL  XREF=30 26 
- SYM=PINPUT   LOC=00000280 LEN=00000008 ESD=0001 TYPE=REL  XREF=167 
- SYM=RESIMP   LOC=00000156 LEN=00000002 ESD=0001 TYPE=REL  XREF=85 27 
- SYM=RESPAR   LOC=00000172 LEN=00000002 ESD=0001 TYPE=REL  XREF=93 31 35 39 43 47 
- SYM=RETURN1  LOC=00000338 LEN=00000004 ESD=0001 TYPE=REL  XREF=183 102 119 
- SYM=SACAR    LOC=00000126 LEN=00000004 ESD=0001 TYPE=REL  XREF=71 33 37 41 45 49 
- SYM=SHWALL   LOC=0000018C LEN=00000006 ESD=0001 TYPE=REL  XREF=100 28 30 34 38 42 
-  46 50 
- SYM=SHWDISC  LOC=000001D6 LEN=00000002 ESD=0001 TYPE=REL  XREF=124 105 108 111 
- SYM=TCENTRO  LOC=000002BC LEN=0000002C ESD=0001 TYPE=REL  XREF=173 
- SYM=TDER     LOC=000002E8 LEN=0000002C ESD=0001 TYPE=REL  XREF=176 
- SYM=TIZQ     LOC=00000290 LEN=0000002C ESD=0001 TYPE=REL  XREF=170 32 36 40 44 48 
-  152 
- SYM=TVACIA   LOC=00000150 LEN=00000004 ESD=0001 TYPE=REL  XREF=82 73 
- SYM=TXTOUT   LOC=00000318 LEN=0000001E ESD=0001 TYPE=REL  XREF=181 100 128 
- SYM=VALIDAR  LOC=000001FC LEN=00000006 ESD=0001 TYPE=REL  XREF=134 
- SYM=VALIN    LOC=00000288 LEN=00000001 ESD=0001 TYPE=REL  XREF=168 140 146 148 
- SYM=WAITECB  LOC=00000278 LEN=00000004 ESD=0001 TYPE=REL  XREF=165 
- SYM=WTO#0002_EOT LOC=0000010D LEN=00000001 ESD=0001 TYPE=REL  XREF=56 54 55 
- SYM=WTO#0004_EOT LOC=0000016E LEN=00000001 ESD=0001 TYPE=REL  XREF=88 86 87 
- SYM=WTO#0005_EOT LOC=00000188 LEN=00000001 ESD=0001 TYPE=REL  XREF=96 94 95 
- SYM=WTOBLOC  LOC=00000314 LEN=00000002 ESD=0001 TYPE=REL  XREF=179 113 
+ SYM=PINPUT   LOC=000002D8 LEN=00000008 ESD=0001 TYPE=REL  XREF=196 
+ SYM=PONER    LOC=0000018E LEN=00000002 ESD=0001 TYPE=REL  XREF=105 70 
+ SYM=RESIMP   LOC=000001AC LEN=00000002 ESD=0001 TYPE=REL  XREF=114 27 
+ SYM=RESPAR   LOC=000001C8 LEN=00000002 ESD=0001 TYPE=REL  XREF=122 
+ SYM=RETURN1  LOC=00000390 LEN=00000004 ESD=0001 TYPE=REL  XREF=212 57 71 131 148 
+ SYM=SACAR    LOC=0000015A LEN=00000004 ESD=0001 TYPE=REL  XREF=89 68 
+ SYM=SHWALL   LOC=000001E2 LEN=00000006 ESD=0001 TYPE=REL  XREF=129 28 30 36 
+ SYM=SHWDISC  LOC=0000022C LEN=00000002 ESD=0001 TYPE=REL  XREF=153 134 137 140 
+ SYM=TCENTRO  LOC=00000314 LEN=0000002C ESD=0001 TYPE=REL  XREF=202 
+ SYM=TDER     LOC=00000340 LEN=0000002C ESD=0001 TYPE=REL  XREF=205 33 
+ SYM=TIZQ     LOC=000002E8 LEN=0000002C ESD=0001 TYPE=REL  XREF=199 31 181 
+ SYM=TVACIA   LOC=00000186 LEN=00000006 ESD=0001 TYPE=REL  XREF=100 91 
+ SYM=TXTOUT   LOC=00000370 LEN=0000001E ESD=0001 TYPE=REL  XREF=210 129 157 
+ SYM=UNATORRE LOC=0000039C LEN=00000004 ESD=0001 TYPE=REL  XREF=216 34 58 69 
+ SYM=VACIA    LOC=00000152 LEN=00000006 ESD=0001 TYPE=REL  XREF=84 79 
+ SYM=VALIDAR  LOC=00000252 LEN=00000006 ESD=0001 TYPE=REL  XREF=163 
+ SYM=VALIN    LOC=000002E0 LEN=00000001 ESD=0001 TYPE=REL  XREF=197 169 175 177 
+ SYM=VERDISC  LOC=00000138 LEN=00000004 ESD=0001 TYPE=REL  XREF=77 59 62 
+ SYM=WAITECB  LOC=000002CC LEN=00000004 ESD=0001 TYPE=REL  XREF=194 
+ SYM=WTO#0002_EOT LOC=000000D5 LEN=00000001 ESD=0001 TYPE=REL  XREF=42 40 41 
+ SYM=WTO#0004_EOT LOC=000001C4 LEN=00000001 ESD=0001 TYPE=REL  XREF=117 115 116 
+ SYM=WTO#0005_EOT LOC=000001DE LEN=00000001 ESD=0001 TYPE=REL  XREF=125 123 124 
+ SYM=WTOBLOC  LOC=0000036C LEN=00000002 ESD=0001 TYPE=REL  XREF=208 142 
 
 Literal Table Listing
 
- LIT=30C' '   LOC=000003D4 LEN=00000001 ESD=0001 POOL=0001 XREF=100 
- LIT=33F'0'   LOC=00000350 LEN=00000004 ESD=0001 POOL=0001 XREF=152 
- LIT=C'0'     LOC=000003F3 LEN=00000001 ESD=0001 POOL=0001 XREF=134 144 
- LIT=C'1'     LOC=000003F7 LEN=00000001 ESD=0001 POOL=0001 XREF=142 
- LIT=C'3'     LOC=000003F4 LEN=00000001 ESD=0001 POOL=0001 XREF=136 
- LIT=C'9'     LOC=000003F5 LEN=00000001 ESD=0001 POOL=0001 XREF=138 
- LIT=C'N'     LOC=000003F8 LEN=00000001 ESD=0001 POOL=0001 XREF=148 
- LIT=C'S'     LOC=000003F6 LEN=00000001 ESD=0001 POOL=0001 XREF=140 146 
- LIT=C'X'     LOC=000003F2 LEN=00000001 ESD=0001 POOL=0001 XREF=130 
- LIT=F'-1'    LOC=0000034C LEN=00000004 ESD=0001 POOL=0001 XREF=82 
- LIT=F'0'     LOC=00000344 LEN=00000004 ESD=0001 POOL=0001 XREF=25 72 77 117 125 
- LIT=F'1'     LOC=00000340 LEN=00000004 ESD=0001 POOL=0001 XREF=24 131 
- LIT=F'4'     LOC=00000348 LEN=00000004 ESD=0001 POOL=0001 XREF=79 116 156 162 
+ LIT=30C' '   LOC=0000043C LEN=00000001 ESD=0001 POOL=0001 XREF=129 
+ LIT=33F'0'   LOC=000003B8 LEN=00000004 ESD=0001 POOL=0001 XREF=181 
+ LIT=C'0'     LOC=0000045D LEN=00000001 ESD=0001 POOL=0001 XREF=163 173 
+ LIT=C'1'     LOC=00000461 LEN=00000001 ESD=0001 POOL=0001 XREF=171 
+ LIT=C'3'     LOC=0000045E LEN=00000001 ESD=0001 POOL=0001 XREF=165 
+ LIT=C'9'     LOC=0000045F LEN=00000001 ESD=0001 POOL=0001 XREF=167 
+ LIT=C'N'     LOC=00000462 LEN=00000001 ESD=0001 POOL=0001 XREF=177 
+ LIT=C'S'     LOC=00000460 LEN=00000001 ESD=0001 POOL=0001 XREF=169 175 
+ LIT=C'X'     LOC=0000045A LEN=00000001 ESD=0001 POOL=0001 XREF=159 
+ LIT=C'n'     LOC=0000045C LEN=00000001 ESD=0001 POOL=0001 XREF=73 
+ LIT=C's'     LOC=0000045B LEN=00000001 ESD=0001 POOL=0001 XREF=67 
+ LIT=F'-1'    LOC=000003B4 LEN=00000004 ESD=0001 POOL=0001 XREF=63 84 100 
+ LIT=F'0'     LOC=000003AC LEN=00000004 ESD=0001 POOL=0001 XREF=25 78 90 95 146 154 
+ LIT=F'1'     LOC=000003A8 LEN=00000004 ESD=0001 POOL=0001 XREF=24 160 
+ LIT=F'4'     LOC=000003B0 LEN=00000004 ESD=0001 POOL=0001 XREF=97 107 110 145 185 
+  191 
  
 AZ390I total mnote warnings = 0
 AZ390I total mnote errors   = 0
 AZ390I max   mnote level    = 0
 AZ390I total mz390 errors   = 0
 AZ390I total az390 errors   = 0
-19:06:41 HANOI     MZ390 ENDED   RC= 0 SEC= 0 MEM(MB)= 42 IO=822
+21:05:54 HANOI     MZ390 ENDED   RC= 0 SEC= 0 MEM(MB)= 43 IO=908
