@@ -40,16 +40,19 @@ NOSOL    L    2,RETURN3
 
 * Hace el movimiento legal entre las torres cuyas direcciones estan
 * guardadas en R10 y R11
+* para evitar repetir codigo, tambien muestro como quedan
+* las torres
 SWPDISC  ST   10,TORIGEN
          ST   11,TDESTINO
          ST   2,RETURN2
          BAL  2,MOVLEGAL
          CLC  MOVVAL(1),=C's'
-         BE   NOMOV4
+         BE   NOMOV
          ST   10,TDESTINO
          ST   11,TORIGEN
          BAL  2,MOVLEGAL
-NOMOV4   L    2,RETURN2
+NOMOV    BAL  2,SHWALL
+         L    2,RETURN2
          BR   2
 
 *Si es posible, mueve desde la torre guardada en TORIGEN hasta
@@ -124,17 +127,14 @@ RESIMP   ST    2,RETURN4
 LPIMP    LA    10,TIZQ
          LA    11,TDER
          BAL   2,SWPDISC
-         BAL   2,SHWALL
          BAL   2,CHECKSOL
          LA    10,TIZQ
          LA    11,TCENTRO
          BAL   2,SWPDISC
-         BAL   2,SHWALL
          BAL   2,CHECKSOL
          LA    10,TCENTRO
          LA    11,TDER
          BAL   2,SWPDISC
-         BAL   2,SHWALL
          BAL   2,CHECKSOL
          B     LPIMP
          L     2,RETURN4
@@ -145,17 +145,14 @@ RESPAR   ST    2,RETURN4
 LPPAR    LA    10,TIZQ
          LA    11,TCENTRO
          BAL   2,SWPDISC
-         BAL   2,SHWALL
          BAL   2,CHECKSOL
          LA    10,TIZQ
          LA    11,TDER
          BAL   2,SWPDISC
-         BAL   2,SHWALL
          BAL   2,CHECKSOL
          LA    10,TCENTRO
          LA    11,TDER
          BAL   2,SWPDISC
-         BAL   2,SHWALL
          BAL   2,CHECKSOL
          B     LPPAR
          L     2,RETURN4
